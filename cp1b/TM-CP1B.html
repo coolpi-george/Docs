@@ -1,0 +1,467 @@
+<!DOCTYPE html>
+<html>
+<head>
+<title>TM-CP1B.md</title>
+<meta http-equiv="Content-type" content="text/html;charset=UTF-8">
+
+<style>
+/* https://github.com/microsoft/vscode/blob/master/extensions/markdown-language-features/media/markdown.css */
+/*---------------------------------------------------------------------------------------------
+ *  Copyright (c) Microsoft Corporation. All rights reserved.
+ *  Licensed under the MIT License. See License.txt in the project root for license information.
+ *--------------------------------------------------------------------------------------------*/
+
+body {
+	font-family: var(--vscode-markdown-font-family, -apple-system, BlinkMacSystemFont, "Segoe WPC", "Segoe UI", "Ubuntu", "Droid Sans", sans-serif);
+	font-size: var(--vscode-markdown-font-size, 14px);
+	padding: 0 26px;
+	line-height: var(--vscode-markdown-line-height, 22px);
+	word-wrap: break-word;
+}
+
+#code-csp-warning {
+	position: fixed;
+	top: 0;
+	right: 0;
+	color: white;
+	margin: 16px;
+	text-align: center;
+	font-size: 12px;
+	font-family: sans-serif;
+	background-color:#444444;
+	cursor: pointer;
+	padding: 6px;
+	box-shadow: 1px 1px 1px rgba(0,0,0,.25);
+}
+
+#code-csp-warning:hover {
+	text-decoration: none;
+	background-color:#007acc;
+	box-shadow: 2px 2px 2px rgba(0,0,0,.25);
+}
+
+body.scrollBeyondLastLine {
+	margin-bottom: calc(100vh - 22px);
+}
+
+body.showEditorSelection .code-line {
+	position: relative;
+}
+
+body.showEditorSelection .code-active-line:before,
+body.showEditorSelection .code-line:hover:before {
+	content: "";
+	display: block;
+	position: absolute;
+	top: 0;
+	left: -12px;
+	height: 100%;
+}
+
+body.showEditorSelection li.code-active-line:before,
+body.showEditorSelection li.code-line:hover:before {
+	left: -30px;
+}
+
+.vscode-light.showEditorSelection .code-active-line:before {
+	border-left: 3px solid rgba(0, 0, 0, 0.15);
+}
+
+.vscode-light.showEditorSelection .code-line:hover:before {
+	border-left: 3px solid rgba(0, 0, 0, 0.40);
+}
+
+.vscode-light.showEditorSelection .code-line .code-line:hover:before {
+	border-left: none;
+}
+
+.vscode-dark.showEditorSelection .code-active-line:before {
+	border-left: 3px solid rgba(255, 255, 255, 0.4);
+}
+
+.vscode-dark.showEditorSelection .code-line:hover:before {
+	border-left: 3px solid rgba(255, 255, 255, 0.60);
+}
+
+.vscode-dark.showEditorSelection .code-line .code-line:hover:before {
+	border-left: none;
+}
+
+.vscode-high-contrast.showEditorSelection .code-active-line:before {
+	border-left: 3px solid rgba(255, 160, 0, 0.7);
+}
+
+.vscode-high-contrast.showEditorSelection .code-line:hover:before {
+	border-left: 3px solid rgba(255, 160, 0, 1);
+}
+
+.vscode-high-contrast.showEditorSelection .code-line .code-line:hover:before {
+	border-left: none;
+}
+
+img {
+	max-width: 100%;
+	max-height: 100%;
+}
+
+a {
+	text-decoration: none;
+}
+
+a:hover {
+	text-decoration: underline;
+}
+
+a:focus,
+input:focus,
+select:focus,
+textarea:focus {
+	outline: 1px solid -webkit-focus-ring-color;
+	outline-offset: -1px;
+}
+
+hr {
+	border: 0;
+	height: 2px;
+	border-bottom: 2px solid;
+}
+
+h1 {
+	padding-bottom: 0.3em;
+	line-height: 1.2;
+	border-bottom-width: 1px;
+	border-bottom-style: solid;
+}
+
+h1, h2, h3 {
+	font-weight: normal;
+}
+
+table {
+	border-collapse: collapse;
+}
+
+table > thead > tr > th {
+	text-align: left;
+	border-bottom: 1px solid;
+}
+
+table > thead > tr > th,
+table > thead > tr > td,
+table > tbody > tr > th,
+table > tbody > tr > td {
+	padding: 5px 10px;
+}
+
+table > tbody > tr + tr > td {
+	border-top: 1px solid;
+}
+
+blockquote {
+	margin: 0 7px 0 5px;
+	padding: 0 16px 0 10px;
+	border-left-width: 5px;
+	border-left-style: solid;
+}
+
+code {
+	font-family: Menlo, Monaco, Consolas, "Droid Sans Mono", "Courier New", monospace, "Droid Sans Fallback";
+	font-size: 1em;
+	line-height: 1.357em;
+}
+
+body.wordWrap pre {
+	white-space: pre-wrap;
+}
+
+pre:not(.hljs),
+pre.hljs code > div {
+	padding: 16px;
+	border-radius: 3px;
+	overflow: auto;
+}
+
+pre code {
+	color: var(--vscode-editor-foreground);
+	tab-size: 4;
+}
+
+/** Theming */
+
+.vscode-light pre {
+	background-color: rgba(220, 220, 220, 0.4);
+}
+
+.vscode-dark pre {
+	background-color: rgba(10, 10, 10, 0.4);
+}
+
+.vscode-high-contrast pre {
+	background-color: rgb(0, 0, 0);
+}
+
+.vscode-high-contrast h1 {
+	border-color: rgb(0, 0, 0);
+}
+
+.vscode-light table > thead > tr > th {
+	border-color: rgba(0, 0, 0, 0.69);
+}
+
+.vscode-dark table > thead > tr > th {
+	border-color: rgba(255, 255, 255, 0.69);
+}
+
+.vscode-light h1,
+.vscode-light hr,
+.vscode-light table > tbody > tr + tr > td {
+	border-color: rgba(0, 0, 0, 0.18);
+}
+
+.vscode-dark h1,
+.vscode-dark hr,
+.vscode-dark table > tbody > tr + tr > td {
+	border-color: rgba(255, 255, 255, 0.18);
+}
+
+</style>
+
+<style>
+/* Tomorrow Theme */
+/* http://jmblog.github.com/color-themes-for-google-code-highlightjs */
+/* Original theme - https://github.com/chriskempson/tomorrow-theme */
+
+/* Tomorrow Comment */
+.hljs-comment,
+.hljs-quote {
+	color: #8e908c;
+}
+
+/* Tomorrow Red */
+.hljs-variable,
+.hljs-template-variable,
+.hljs-tag,
+.hljs-name,
+.hljs-selector-id,
+.hljs-selector-class,
+.hljs-regexp,
+.hljs-deletion {
+	color: #c82829;
+}
+
+/* Tomorrow Orange */
+.hljs-number,
+.hljs-built_in,
+.hljs-builtin-name,
+.hljs-literal,
+.hljs-type,
+.hljs-params,
+.hljs-meta,
+.hljs-link {
+	color: #f5871f;
+}
+
+/* Tomorrow Yellow */
+.hljs-attribute {
+	color: #eab700;
+}
+
+/* Tomorrow Green */
+.hljs-string,
+.hljs-symbol,
+.hljs-bullet,
+.hljs-addition {
+	color: #718c00;
+}
+
+/* Tomorrow Blue */
+.hljs-title,
+.hljs-section {
+	color: #4271ae;
+}
+
+/* Tomorrow Purple */
+.hljs-keyword,
+.hljs-selector-tag {
+	color: #8959a8;
+}
+
+.hljs {
+	display: block;
+	overflow-x: auto;
+	color: #4d4d4c;
+	padding: 0.5em;
+}
+
+.hljs-emphasis {
+	font-style: italic;
+}
+
+.hljs-strong {
+	font-weight: bold;
+}
+</style>
+
+<style>
+/*
+ * Markdown PDF CSS
+ */
+
+ body {
+	font-family: -apple-system, BlinkMacSystemFont, "Segoe WPC", "Segoe UI", "Ubuntu", "Droid Sans", sans-serif, "Meiryo";
+	padding: 0 12px;
+}
+
+pre {
+	background-color: #f8f8f8;
+	border: 1px solid #cccccc;
+	border-radius: 3px;
+	overflow-x: auto;
+	white-space: pre-wrap;
+	overflow-wrap: break-word;
+}
+
+pre:not(.hljs) {
+	padding: 23px;
+	line-height: 19px;
+}
+
+blockquote {
+	background: rgba(127, 127, 127, 0.1);
+	border-color: rgba(0, 122, 204, 0.5);
+}
+
+.emoji {
+	height: 1.4em;
+}
+
+code {
+	font-size: 14px;
+	line-height: 19px;
+}
+
+/* for inline code */
+:not(pre):not(.hljs) > code {
+	color: #C9AE75; /* Change the old color so it seems less like an error */
+	font-size: inherit;
+}
+
+/* Page Break : use <div class="page"/> to insert page break
+-------------------------------------------------------- */
+.page {
+	page-break-after: always;
+}
+
+</style>
+
+<script src="https://unpkg.com/mermaid/dist/mermaid.min.js"></script>
+</head>
+<body>
+  <script>
+    mermaid.initialize({
+      startOnLoad: true,
+      theme: document.body.classList.contains('vscode-dark') || document.body.classList.contains('vscode-high-contrast')
+          ? 'dark'
+          : 'default'
+    });
+  </script>
+<h1 id="tm-cp1b-operation-guide">TM-CP1B Operation Guide</h1>
+<div align=center>  <img src=".\image.png" width=70%></div>
+<ul>
+<li>
+<p>Connect the power and plug in the network cable</p>
+<ul>
+<li>
+<p>The power supply range is 9V-36V, with the positive terminal near the LED end. <br>Note: Incorrect polarity can cause damage to the machine.</p>
+<div align=left>  <img src=".\image-1.png" width=40%></div>
+</li>
+<li>
+<p>The default network connection method of the machine is DHCP to automatically obtain an IP address.<br>
+After the network is connected normally, the two indicator lights on the network port will light up simultaneously.</p>
+</li>
+</ul>
+</li>
+<li>
+<p>Obtain the IP address of the machine<br></p>
+<ul>
+<li>
+<p>Use LAN IP address scanning software <a href="https://download.advanced-ip-scanner.com/download/files/Advanced_IP_Scanner_2.5.4594.1.exe">Advanced_IP_Scanner</a> to obtain all scanned LAN IP addresses.</p>
+</li>
+<li>
+<p>After downloading and installing the software, open the software and you will see the following interface. Click Scan to start scanning.</p>
+<div align=left>  <img src=".\image-2.png" width=60%></div>
+</li>
+<li>
+<p>The machine with the device name coolpi in the scanning results corresponds to the DHCP address of the machine.</p>
+</li>
+</ul>
+</li>
+<li>
+<p>Login device<br></p>
+<ul>
+<li>
+<p>Enter the following link in the browser to enter the login interface:<br>
+https://your_ip_address:9090/<br><br>
+Replace 'your_ipaddress' with the actual IP address of the machine.<br></p>
+<div align=left>  <img src=".\image-5.png" width=60%></div>
+</li>
+<li>
+<p>Enter your username and password, then click login.<br> The default username for the machine is admin, and the password is admin.</p>
+<div align=left>  <img src=".\image-6.png" width=60%></div>
+</li>
+<li>
+<p>Click on the terminal to enter the shell interface, where you can update various devices of the system or operating system.</p>
+<div align=left>  <img src=".\image-8.png" width=60%></div>
+</li>
+</ul>
+</li>
+<li>
+<p>Interface operation</p>
+<ul>
+<li>
+<p>The correspondence between ttySx device nodes and interfaces.</p>
+<p>ttyS0 -- LORA</p>
+<p>ttyS1 -- RS485</p>
+<p>ttyS4 -- RS232</p>
+<p>ttyUSB0-ttyUSB3 -- 4G-LTE</p>
+</li>
+<li>
+<p>RS485&amp;RS232</p>
+<pre class="hljs"><code><div>stty -F /dev/ttyS1 raw speed 115200 //Configure RS485 baud rate to 115200
+echo &quot;hello world&quot; &gt; /dev/ttyS1     //Send &quot;hello world&quot; to RS485 port
+</div></code></pre>
+<p>You can also operate the serial port through C or Python.</p>
+</li>
+<li>
+<p>4G-LTE</p>
+<p>After inserting the 4G module and SIM card, the machine will automatically complete the dialing operation after booting up.</p>
+<p>After successful dialing, the system will display the following ppp0 network nodes.</p>
+<p>The default 4G-LET module model currently used is EC20.</p>
+<div align=left>  <img src=".\image-10.png" width=60%></div>
+</li>
+<li>
+<p>WIFI</p>
+<p>The default WIFI module model used by the machine is BL-R7601MU5, which uses the MT7601U chip. <br>
+The system has already integrated drivers and firmware by default, and can be used by plugging in the module.</p>
+<div align=left>  <img src=".\image-11.png" width=40%></div>
+</li>
+<li>
+<p>LORA(To be updated)</p>
+</li>
+</ul>
+</li>
+<li>
+<p>Common problems and solutions</p>
+<ul>
+<li>How to change default password？<pre class="hljs"><code><div>usermod -p $(openssl passwd -1 123) admin //Change the admin password to 123
+</div></code></pre>
+</li>
+<li>How to add a new user?
+As shown in the following figure, new users can be added and permissions can be configured through the backend management software.<div align=left>  <img src=".\image-9.png" width=60%></div>
+</li>
+</ul>
+</li>
+</ul>
+
+</body>
+</html>
