@@ -1,0 +1,1559 @@
+<!DOCTYPE html><html><head>
+      <title>CP4b Quick Start Guide</title>
+      <meta charset="utf-8">
+      <meta name="viewport" content="width=device-width, initial-scale=1.0">
+      
+      <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.16.9/dist/katex.min.css">
+      
+      
+      
+      
+      
+      <style>
+      code[class*=language-],pre[class*=language-]{color:#333;background:0 0;font-family:Consolas,"Liberation Mono",Menlo,Courier,monospace;text-align:left;white-space:pre;word-spacing:normal;word-break:normal;word-wrap:normal;line-height:1.4;-moz-tab-size:8;-o-tab-size:8;tab-size:8;-webkit-hyphens:none;-moz-hyphens:none;-ms-hyphens:none;hyphens:none}pre[class*=language-]{padding:.8em;overflow:auto;border-radius:3px;background:#f5f5f5}:not(pre)>code[class*=language-]{padding:.1em;border-radius:.3em;white-space:normal;background:#f5f5f5}.token.blockquote,.token.comment{color:#969896}.token.cdata{color:#183691}.token.doctype,.token.macro.property,.token.punctuation,.token.variable{color:#333}.token.builtin,.token.important,.token.keyword,.token.operator,.token.rule{color:#a71d5d}.token.attr-value,.token.regex,.token.string,.token.url{color:#183691}.token.atrule,.token.boolean,.token.code,.token.command,.token.constant,.token.entity,.token.number,.token.property,.token.symbol{color:#0086b3}.token.prolog,.token.selector,.token.tag{color:#63a35c}.token.attr-name,.token.class,.token.class-name,.token.function,.token.id,.token.namespace,.token.pseudo-class,.token.pseudo-element,.token.url-reference .token.variable{color:#795da3}.token.entity{cursor:help}.token.title,.token.title .token.punctuation{font-weight:700;color:#1d3e81}.token.list{color:#ed6a43}.token.inserted{background-color:#eaffea;color:#55a532}.token.deleted{background-color:#ffecec;color:#bd2c00}.token.bold{font-weight:700}.token.italic{font-style:italic}.language-json .token.property{color:#183691}.language-markup .token.tag .token.punctuation{color:#333}.language-css .token.function,code.language-css{color:#0086b3}.language-yaml .token.atrule{color:#63a35c}code.language-yaml{color:#183691}.language-ruby .token.function{color:#333}.language-markdown .token.url{color:#795da3}.language-makefile .token.symbol{color:#795da3}.language-makefile .token.variable{color:#183691}.language-makefile .token.builtin{color:#0086b3}.language-bash .token.keyword{color:#0086b3}pre[data-line]{position:relative;padding:1em 0 1em 3em}pre[data-line] .line-highlight-wrapper{position:absolute;top:0;left:0;background-color:transparent;display:block;width:100%}pre[data-line] .line-highlight{position:absolute;left:0;right:0;padding:inherit 0;margin-top:1em;background:hsla(24,20%,50%,.08);background:linear-gradient(to right,hsla(24,20%,50%,.1) 70%,hsla(24,20%,50%,0));pointer-events:none;line-height:inherit;white-space:pre}pre[data-line] .line-highlight:before,pre[data-line] .line-highlight[data-end]:after{content:attr(data-start);position:absolute;top:.4em;left:.6em;min-width:1em;padding:0 .5em;background-color:hsla(24,20%,50%,.4);color:#f4f1ef;font:bold 65%/1.5 sans-serif;text-align:center;vertical-align:.3em;border-radius:999px;text-shadow:none;box-shadow:0 1px #fff}pre[data-line] .line-highlight[data-end]:after{content:attr(data-end);top:auto;bottom:.4em}html body{font-family:'Helvetica Neue',Helvetica,'Segoe UI',Arial,freesans,sans-serif;font-size:16px;line-height:1.6;color:#333;background-color:#fff;overflow:initial;box-sizing:border-box;word-wrap:break-word}html body>:first-child{margin-top:0}html body h1,html body h2,html body h3,html body h4,html body h5,html body h6{line-height:1.2;margin-top:1em;margin-bottom:16px;color:#000}html body h1{font-size:2.25em;font-weight:300;padding-bottom:.3em}html body h2{font-size:1.75em;font-weight:400;padding-bottom:.3em}html body h3{font-size:1.5em;font-weight:500}html body h4{font-size:1.25em;font-weight:600}html body h5{font-size:1.1em;font-weight:600}html body h6{font-size:1em;font-weight:600}html body h1,html body h2,html body h3,html body h4,html body h5{font-weight:600}html body h5{font-size:1em}html body h6{color:#5c5c5c}html body strong{color:#000}html body del{color:#5c5c5c}html body a:not([href]){color:inherit;text-decoration:none}html body a{color:#08c;text-decoration:none}html body a:hover{color:#00a3f5;text-decoration:none}html body img{max-width:100%}html body>p{margin-top:0;margin-bottom:16px;word-wrap:break-word}html body>ol,html body>ul{margin-bottom:16px}html body ol,html body ul{padding-left:2em}html body ol.no-list,html body ul.no-list{padding:0;list-style-type:none}html body ol ol,html body ol ul,html body ul ol,html body ul ul{margin-top:0;margin-bottom:0}html body li{margin-bottom:0}html body li.task-list-item{list-style:none}html body li>p{margin-top:0;margin-bottom:0}html body .task-list-item-checkbox{margin:0 .2em .25em -1.8em;vertical-align:middle}html body .task-list-item-checkbox:hover{cursor:pointer}html body blockquote{margin:16px 0;font-size:inherit;padding:0 15px;color:#5c5c5c;background-color:#f0f0f0;border-left:4px solid #d6d6d6}html body blockquote>:first-child{margin-top:0}html body blockquote>:last-child{margin-bottom:0}html body hr{height:4px;margin:32px 0;background-color:#d6d6d6;border:0 none}html body table{margin:10px 0 15px 0;border-collapse:collapse;border-spacing:0;display:block;width:100%;overflow:auto;word-break:normal;word-break:keep-all}html body table th{font-weight:700;color:#000}html body table td,html body table th{border:1px solid #d6d6d6;padding:6px 13px}html body dl{padding:0}html body dl dt{padding:0;margin-top:16px;font-size:1em;font-style:italic;font-weight:700}html body dl dd{padding:0 16px;margin-bottom:16px}html body code{font-family:Menlo,Monaco,Consolas,'Courier New',monospace;font-size:.85em;color:#000;background-color:#f0f0f0;border-radius:3px;padding:.2em 0}html body code::after,html body code::before{letter-spacing:-.2em;content:'\00a0'}html body pre>code{padding:0;margin:0;word-break:normal;white-space:pre;background:0 0;border:0}html body .highlight{margin-bottom:16px}html body .highlight pre,html body pre{padding:1em;overflow:auto;line-height:1.45;border:#d6d6d6;border-radius:3px}html body .highlight pre{margin-bottom:0;word-break:normal}html body pre code,html body pre tt{display:inline;max-width:initial;padding:0;margin:0;overflow:initial;line-height:inherit;word-wrap:normal;background-color:transparent;border:0}html body pre code:after,html body pre code:before,html body pre tt:after,html body pre tt:before{content:normal}html body blockquote,html body dl,html body ol,html body p,html body pre,html body ul{margin-top:0;margin-bottom:16px}html body kbd{color:#000;border:1px solid #d6d6d6;border-bottom:2px solid #c7c7c7;padding:2px 4px;background-color:#f0f0f0;border-radius:3px}@media print{html body{background-color:#fff}html body h1,html body h2,html body h3,html body h4,html body h5,html body h6{color:#000;page-break-after:avoid}html body blockquote{color:#5c5c5c}html body pre{page-break-inside:avoid}html body table{display:table}html body img{display:block;max-width:100%;max-height:100%}html body code,html body pre{word-wrap:break-word;white-space:pre}}.markdown-preview{width:100%;height:100%;box-sizing:border-box}.markdown-preview ul{list-style:disc}.markdown-preview ul ul{list-style:circle}.markdown-preview ul ul ul{list-style:square}.markdown-preview ol{list-style:decimal}.markdown-preview ol ol,.markdown-preview ul ol{list-style-type:lower-roman}.markdown-preview ol ol ol,.markdown-preview ol ul ol,.markdown-preview ul ol ol,.markdown-preview ul ul ol{list-style-type:lower-alpha}.markdown-preview .newpage,.markdown-preview .pagebreak{page-break-before:always}.markdown-preview pre.line-numbers{position:relative;padding-left:3.8em;counter-reset:linenumber}.markdown-preview pre.line-numbers>code{position:relative}.markdown-preview pre.line-numbers .line-numbers-rows{position:absolute;pointer-events:none;top:1em;font-size:100%;left:0;width:3em;letter-spacing:-1px;border-right:1px solid #999;-webkit-user-select:none;-moz-user-select:none;-ms-user-select:none;user-select:none}.markdown-preview pre.line-numbers .line-numbers-rows>span{pointer-events:none;display:block;counter-increment:linenumber}.markdown-preview pre.line-numbers .line-numbers-rows>span:before{content:counter(linenumber);color:#999;display:block;padding-right:.8em;text-align:right}.markdown-preview .mathjax-exps .MathJax_Display{text-align:center!important}.markdown-preview:not([data-for=preview]) .code-chunk .code-chunk-btn-group{display:none}.markdown-preview:not([data-for=preview]) .code-chunk .status{display:none}.markdown-preview:not([data-for=preview]) .code-chunk .output-div{margin-bottom:16px}.markdown-preview .md-toc{padding:0}.markdown-preview .md-toc .md-toc-link-wrapper .md-toc-link{display:inline;padding:.25rem 0}.markdown-preview .md-toc .md-toc-link-wrapper .md-toc-link div,.markdown-preview .md-toc .md-toc-link-wrapper .md-toc-link p{display:inline}.markdown-preview .md-toc .md-toc-link-wrapper.highlighted .md-toc-link{font-weight:800}.scrollbar-style::-webkit-scrollbar{width:8px}.scrollbar-style::-webkit-scrollbar-track{border-radius:10px;background-color:transparent}.scrollbar-style::-webkit-scrollbar-thumb{border-radius:5px;background-color:rgba(150,150,150,.66);border:4px solid rgba(150,150,150,.66);background-clip:content-box}html body[for=html-export]:not([data-presentation-mode]){position:relative;width:100%;height:100%;top:0;left:0;margin:0;padding:0;overflow:auto}html body[for=html-export]:not([data-presentation-mode]) .markdown-preview{position:relative;top:0;min-height:100vh}@media screen and (min-width:914px){html body[for=html-export]:not([data-presentation-mode]) .markdown-preview{padding:2em calc(50% - 457px + 2em)}}@media screen and (max-width:914px){html body[for=html-export]:not([data-presentation-mode]) .markdown-preview{padding:2em}}@media screen and (max-width:450px){html body[for=html-export]:not([data-presentation-mode]) .markdown-preview{font-size:14px!important;padding:1em}}@media print{html body[for=html-export]:not([data-presentation-mode]) #sidebar-toc-btn{display:none}}html body[for=html-export]:not([data-presentation-mode]) #sidebar-toc-btn{position:fixed;bottom:8px;left:8px;font-size:28px;cursor:pointer;color:inherit;z-index:99;width:32px;text-align:center;opacity:.4}html body[for=html-export]:not([data-presentation-mode])[html-show-sidebar-toc] #sidebar-toc-btn{opacity:1}html body[for=html-export]:not([data-presentation-mode])[html-show-sidebar-toc] .md-sidebar-toc{position:fixed;top:0;left:0;width:300px;height:100%;padding:32px 0 48px 0;font-size:14px;box-shadow:0 0 4px rgba(150,150,150,.33);box-sizing:border-box;overflow:auto;background-color:inherit}html body[for=html-export]:not([data-presentation-mode])[html-show-sidebar-toc] .md-sidebar-toc::-webkit-scrollbar{width:8px}html body[for=html-export]:not([data-presentation-mode])[html-show-sidebar-toc] .md-sidebar-toc::-webkit-scrollbar-track{border-radius:10px;background-color:transparent}html body[for=html-export]:not([data-presentation-mode])[html-show-sidebar-toc] .md-sidebar-toc::-webkit-scrollbar-thumb{border-radius:5px;background-color:rgba(150,150,150,.66);border:4px solid rgba(150,150,150,.66);background-clip:content-box}html body[for=html-export]:not([data-presentation-mode])[html-show-sidebar-toc] .md-sidebar-toc a{text-decoration:none}html body[for=html-export]:not([data-presentation-mode])[html-show-sidebar-toc] .md-sidebar-toc .md-toc{padding:0 16px}html body[for=html-export]:not([data-presentation-mode])[html-show-sidebar-toc] .md-sidebar-toc .md-toc .md-toc-link-wrapper .md-toc-link{display:inline;padding:.25rem 0}html body[for=html-export]:not([data-presentation-mode])[html-show-sidebar-toc] .md-sidebar-toc .md-toc .md-toc-link-wrapper .md-toc-link div,html body[for=html-export]:not([data-presentation-mode])[html-show-sidebar-toc] .md-sidebar-toc .md-toc .md-toc-link-wrapper .md-toc-link p{display:inline}html body[for=html-export]:not([data-presentation-mode])[html-show-sidebar-toc] .md-sidebar-toc .md-toc .md-toc-link-wrapper.highlighted .md-toc-link{font-weight:800}html body[for=html-export]:not([data-presentation-mode])[html-show-sidebar-toc] .markdown-preview{left:300px;width:calc(100% - 300px);padding:2em calc(50% - 457px - 300px / 2);margin:0;box-sizing:border-box}@media screen and (max-width:1274px){html body[for=html-export]:not([data-presentation-mode])[html-show-sidebar-toc] .markdown-preview{padding:2em}}@media screen and (max-width:450px){html body[for=html-export]:not([data-presentation-mode])[html-show-sidebar-toc] .markdown-preview{width:100%}}html body[for=html-export]:not([data-presentation-mode]):not([html-show-sidebar-toc]) .markdown-preview{left:50%;transform:translateX(-50%)}html body[for=html-export]:not([data-presentation-mode]):not([html-show-sidebar-toc]) .md-sidebar-toc{display:none}
+/* Please visit the URL below for more information: */
+/*   https://shd101wyy.github.io/markdown-preview-enhanced/#/customize-css */
+
+      </style>
+      <!-- The content below will be included at the end of the <head> element. --><script type="text/javascript">
+  document.addEventListener("DOMContentLoaded", function () {
+    // your code here
+  });
+</script></head><body for="html-export">
+    
+    
+      <div class="crossnote markdown-preview  ">
+      
+<h1 id="cp4b-quick-start-guide">CP4b Quick Start Guide </h1>
+<p><img src="assets/cp4b.png" alt="cp4b"></p>
+<h2 id="interface-introduction">Interface Introduction </h2>
+<table>
+<thead>
+<tr>
+<th style="text-align:center">Interface</th>
+<th style="text-align:center">Model</th>
+<th style="text-align:center">Specifications</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align:center">CPU</td>
+<td style="text-align:center">ROCKCHIP RK3588S</td>
+<td style="text-align:center">4cores A76(2.2GHz)+4cores A55(1.8GHz)</td>
+</tr>
+<tr>
+<td style="text-align:center">GPU</td>
+<td style="text-align:center">ARM MaliG610</td>
+<td style="text-align:center">4cores（1GHz）</td>
+</tr>
+<tr>
+<td style="text-align:center">NPU</td>
+<td style="text-align:center">ROCKCHIP</td>
+<td style="text-align:center">4cores（1GHz）</td>
+</tr>
+<tr>
+<td style="text-align:center">DDR</td>
+<td style="text-align:center">LPDDR4/4X</td>
+<td style="text-align:center">2G/4G/8G/16G/32G up to 4266Mbps</td>
+</tr>
+<tr>
+<td style="text-align:center">HDMI</td>
+<td style="text-align:center">HDMI 2.1</td>
+<td style="text-align:center">8KP60</td>
+</tr>
+<tr>
+<td style="text-align:center">DP</td>
+<td style="text-align:center">DP1.4 2Lens</td>
+<td style="text-align:center">4KP60</td>
+</tr>
+<tr>
+<td style="text-align:center">Headphone</td>
+<td style="text-align:center">Phone+Mic</td>
+<td style="text-align:center">2-Channel Stereo</td>
+</tr>
+<tr>
+<td style="text-align:center">USB2.0</td>
+<td style="text-align:center">4x</td>
+<td style="text-align:center">Only supports HOST mode and two are connector extensions</td>
+</tr>
+<tr>
+<td style="text-align:center">USB3.0</td>
+<td style="text-align:center">2x</td>
+<td style="text-align:center">The upper layer is an OTG interface</td>
+</tr>
+<tr>
+<td style="text-align:center">Ethernet</td>
+<td style="text-align:center">Gigabit</td>
+<td style="text-align:center">Support POE</td>
+</tr>
+<tr>
+<td style="text-align:center">DSI-TX</td>
+<td style="text-align:center">2Lens</td>
+<td style="text-align:center">4.5Gbps/Line</td>
+</tr>
+<tr>
+<td style="text-align:center">CSI-RX</td>
+<td style="text-align:center">2Lens</td>
+<td style="text-align:center">2.5Gbps/Line</td>
+</tr>
+<tr>
+<td style="text-align:center">WIFI</td>
+<td style="text-align:center">WIFI6+BT5.0</td>
+<td style="text-align:center">IEEE 802.11b/g/n/ac/ax</td>
+</tr>
+<tr>
+<td style="text-align:center">GPIO</td>
+<td style="text-align:center">28</td>
+<td style="text-align:center">i2c uart spi can pwm Refer to the following table</td>
+</tr>
+<tr>
+<td style="text-align:center">KEY</td>
+<td style="text-align:center">POWER</td>
+<td style="text-align:center">Support user customization</td>
+</tr>
+</tbody>
+</table>
+<h2 id="interface-view">Interface View </h2>
+<center><img src="assets/TB.png"></center> 
+<h2 id="gpio-extension-interface">GPIO Extension Interface </h2>
+<table>
+<thead>
+<tr>
+<th style="text-align:center">Number</th>
+<th style="text-align:center">Function0</th>
+<th style="text-align:center">Function1</th>
+<th style="text-align:center">Function2</th>
+<th style="text-align:center">Function3</th>
+<th style="text-align:center">Function4</th>
+<th style="text-align:center">Function5</th>
+<th style="text-align:center">Function6</th>
+<th style="text-align:center">Function7</th>
+<th style="text-align:center">Function8</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align:center"><font color="Red">1</font></td>
+<td style="text-align:center"><font color="Red">3V3</font></td>
+<td style="text-align:center">&nbsp;</td>
+<td style="text-align:center">&nbsp;</td>
+<td style="text-align:center">&nbsp;</td>
+<td style="text-align:center">&nbsp;</td>
+<td style="text-align:center">&nbsp;</td>
+<td style="text-align:center">&nbsp;</td>
+<td style="text-align:center">&nbsp;</td>
+<td style="text-align:center">&nbsp;</td>
+</tr>
+<tr>
+<td style="text-align:center">3</td>
+<td style="text-align:center">GPIO0_D5</td>
+<td style="text-align:center">&nbsp;</td>
+<td style="text-align:center">I2C1_SDA_M2</td>
+<td style="text-align:center">&nbsp;</td>
+<td style="text-align:center">&nbsp;</td>
+<td style="text-align:center">&nbsp;</td>
+<td style="text-align:center">CAN2_TX_M1</td>
+<td style="text-align:center">&nbsp;</td>
+<td style="text-align:center">&nbsp;</td>
+</tr>
+<tr>
+<td style="text-align:center">5</td>
+<td style="text-align:center">GPIO0_D4</td>
+<td style="text-align:center">PWM3_IR_M0</td>
+<td style="text-align:center">I2C1_SCL_M2</td>
+<td style="text-align:center">&nbsp;</td>
+<td style="text-align:center">&nbsp;</td>
+<td style="text-align:center">&nbsp;</td>
+<td style="text-align:center">CAN2_RX_M1</td>
+<td style="text-align:center">&nbsp;</td>
+<td style="text-align:center">&nbsp;</td>
+</tr>
+<tr>
+<td style="text-align:center">7</td>
+<td style="text-align:center">GPIO1_B7</td>
+<td style="text-align:center">&nbsp;</td>
+<td style="text-align:center">&nbsp;</td>
+<td style="text-align:center">&nbsp;</td>
+<td style="text-align:center">SPDIF1_TX_M0</td>
+<td style="text-align:center">PWM13_M2</td>
+<td style="text-align:center">&nbsp;</td>
+<td style="text-align:center">&nbsp;</td>
+<td style="text-align:center">&nbsp;</td>
+</tr>
+<tr>
+<td style="text-align:center">9</td>
+<td style="text-align:center">GND</td>
+<td style="text-align:center">&nbsp;</td>
+<td style="text-align:center">&nbsp;</td>
+<td style="text-align:center">&nbsp;</td>
+<td style="text-align:center">&nbsp;</td>
+<td style="text-align:center">&nbsp;</td>
+<td style="text-align:center">&nbsp;</td>
+<td style="text-align:center">&nbsp;</td>
+<td style="text-align:center">&nbsp;</td>
+</tr>
+<tr>
+<td style="text-align:center">11</td>
+<td style="text-align:center">GPIO4_A0</td>
+<td style="text-align:center">&nbsp;</td>
+<td style="text-align:center">&nbsp;</td>
+<td style="text-align:center">I2S1_MCLK_M0</td>
+<td style="text-align:center">&nbsp;</td>
+<td style="text-align:center">&nbsp;</td>
+<td style="text-align:center">&nbsp;</td>
+<td style="text-align:center">&nbsp;</td>
+<td style="text-align:center">&nbsp;</td>
+</tr>
+<tr>
+<td style="text-align:center">13</td>
+<td style="text-align:center">GPIO4_A1</td>
+<td style="text-align:center">&nbsp;</td>
+<td style="text-align:center">&nbsp;</td>
+<td style="text-align:center">I2S1_SCLK_M0</td>
+<td style="text-align:center">&nbsp;</td>
+<td style="text-align:center">&nbsp;</td>
+<td style="text-align:center">&nbsp;</td>
+<td style="text-align:center">&nbsp;</td>
+<td style="text-align:center">&nbsp;</td>
+</tr>
+<tr>
+<td style="text-align:center">15</td>
+<td style="text-align:center">GPIO4_A2</td>
+<td style="text-align:center">&nbsp;</td>
+<td style="text-align:center">&nbsp;</td>
+<td style="text-align:center">I2S1_LRCK_M0</td>
+<td style="text-align:center">&nbsp;</td>
+<td style="text-align:center">&nbsp;</td>
+<td style="text-align:center">&nbsp;</td>
+<td style="text-align:center">&nbsp;</td>
+<td style="text-align:center">&nbsp;</td>
+</tr>
+<tr>
+<td style="text-align:center"><font color="Red">17</font></td>
+<td style="text-align:center"><font color="Red">3V3</font></td>
+<td style="text-align:center">&nbsp;</td>
+<td style="text-align:center">&nbsp;</td>
+<td style="text-align:center">&nbsp;</td>
+<td style="text-align:center">&nbsp;</td>
+<td style="text-align:center">&nbsp;</td>
+<td style="text-align:center">&nbsp;</td>
+<td style="text-align:center">&nbsp;</td>
+<td style="text-align:center">&nbsp;</td>
+</tr>
+<tr>
+<td style="text-align:center">19</td>
+<td style="text-align:center">GPIO1_B2</td>
+<td style="text-align:center">UART4_RX_M2</td>
+<td style="text-align:center">PDM1_SDI3_M1</td>
+<td style="text-align:center">&nbsp;</td>
+<td style="text-align:center">SPI0_MOSI_M2</td>
+<td style="text-align:center">&nbsp;</td>
+<td style="text-align:center">&nbsp;</td>
+<td style="text-align:center">&nbsp;</td>
+<td style="text-align:center">&nbsp;</td>
+</tr>
+<tr>
+<td style="text-align:center">21</td>
+<td style="text-align:center">GPIO1_B1</td>
+<td style="text-align:center">&nbsp;</td>
+<td style="text-align:center">PDM1_SDI2_M1</td>
+<td style="text-align:center">&nbsp;</td>
+<td style="text-align:center">SPI0_MISO_M2</td>
+<td style="text-align:center">&nbsp;</td>
+<td style="text-align:center">&nbsp;</td>
+<td style="text-align:center">&nbsp;</td>
+<td style="text-align:center">&nbsp;</td>
+</tr>
+<tr>
+<td style="text-align:center">23</td>
+<td style="text-align:center">GPIO1_B3</td>
+<td style="text-align:center">UART4_TX_M2</td>
+<td style="text-align:center">PDM1_CLK1_M1</td>
+<td style="text-align:center">&nbsp;</td>
+<td style="text-align:center">SPI0_CLK_M2</td>
+<td style="text-align:center">&nbsp;</td>
+<td style="text-align:center">&nbsp;</td>
+<td style="text-align:center">&nbsp;</td>
+<td style="text-align:center">&nbsp;</td>
+</tr>
+<tr>
+<td style="text-align:center">25</td>
+<td style="text-align:center">GND</td>
+<td style="text-align:center">&nbsp;</td>
+<td style="text-align:center">&nbsp;</td>
+<td style="text-align:center">&nbsp;</td>
+<td style="text-align:center">&nbsp;</td>
+<td style="text-align:center">&nbsp;</td>
+<td style="text-align:center">&nbsp;</td>
+<td style="text-align:center">&nbsp;</td>
+<td style="text-align:center">&nbsp;</td>
+</tr>
+<tr>
+<td style="text-align:center">27</td>
+<td style="text-align:center">&nbsp;</td>
+<td style="text-align:center">&nbsp;</td>
+<td style="text-align:center">&nbsp;</td>
+<td style="text-align:center">&nbsp;</td>
+<td style="text-align:center">I2C6_SDA_M3</td>
+<td style="text-align:center">&nbsp;</td>
+<td style="text-align:center">&nbsp;</td>
+<td style="text-align:center">&nbsp;</td>
+<td style="text-align:center">&nbsp;</td>
+</tr>
+<tr>
+<td style="text-align:center">29</td>
+<td style="text-align:center">GPIO4_A3</td>
+<td style="text-align:center">&nbsp;</td>
+<td style="text-align:center">&nbsp;</td>
+<td style="text-align:center">&nbsp;</td>
+<td style="text-align:center">&nbsp;</td>
+<td style="text-align:center">UART0_TX_M2</td>
+<td style="text-align:center">&nbsp;</td>
+<td style="text-align:center">&nbsp;</td>
+<td style="text-align:center">&nbsp;</td>
+</tr>
+<tr>
+<td style="text-align:center">31</td>
+<td style="text-align:center">GPIO4_A4</td>
+<td style="text-align:center">&nbsp;</td>
+<td style="text-align:center">&nbsp;</td>
+<td style="text-align:center">&nbsp;</td>
+<td style="text-align:center">I2C3_SCL_M2</td>
+<td style="text-align:center">UART0_RX_M2</td>
+<td style="text-align:center">&nbsp;</td>
+<td style="text-align:center">&nbsp;</td>
+<td style="text-align:center">&nbsp;</td>
+</tr>
+<tr>
+<td style="text-align:center">33</td>
+<td style="text-align:center">GPIO4_A5</td>
+<td style="text-align:center">&nbsp;</td>
+<td style="text-align:center">&nbsp;</td>
+<td style="text-align:center">I2S1_SDI0_M0</td>
+<td style="text-align:center">I2C3_SDA_M2</td>
+<td style="text-align:center">UART3_TX_M2</td>
+<td style="text-align:center">&nbsp;</td>
+<td style="text-align:center">&nbsp;</td>
+<td style="text-align:center">&nbsp;</td>
+</tr>
+<tr>
+<td style="text-align:center">35</td>
+<td style="text-align:center">GPIO4_A6</td>
+<td style="text-align:center">&nbsp;</td>
+<td style="text-align:center">&nbsp;</td>
+<td style="text-align:center">I2S1_SDI1_M0</td>
+<td style="text-align:center">I2C5_SCL_M2</td>
+<td style="text-align:center">UART3_RX_M2</td>
+<td style="text-align:center">&nbsp;</td>
+<td style="text-align:center">&nbsp;</td>
+<td style="text-align:center">&nbsp;</td>
+</tr>
+<tr>
+<td style="text-align:center">37</td>
+<td style="text-align:center">GPIO4_A7</td>
+<td style="text-align:center">&nbsp;</td>
+<td style="text-align:center">&nbsp;</td>
+<td style="text-align:center">I2S1_SDI2_M0</td>
+<td style="text-align:center">I2C5_SDA_M2</td>
+<td style="text-align:center">&nbsp;</td>
+<td style="text-align:center">&nbsp;</td>
+<td style="text-align:center">&nbsp;</td>
+<td style="text-align:center">&nbsp;</td>
+</tr>
+<tr>
+<td style="text-align:center">39</td>
+<td style="text-align:center">GND</td>
+<td style="text-align:center">&nbsp;</td>
+<td style="text-align:center">&nbsp;</td>
+<td style="text-align:center">&nbsp;</td>
+<td style="text-align:center">&nbsp;</td>
+<td style="text-align:center">&nbsp;</td>
+<td style="text-align:center">&nbsp;</td>
+<td style="text-align:center">&nbsp;</td>
+<td style="text-align:center">&nbsp;</td>
+</tr>
+<tr>
+<td style="text-align:center"><font color="Red">2</font></td>
+<td style="text-align:center"><font color="Red">5V0</font></td>
+<td style="text-align:center">&nbsp;</td>
+<td style="text-align:center">&nbsp;</td>
+<td style="text-align:center">&nbsp;</td>
+<td style="text-align:center">&nbsp;</td>
+<td style="text-align:center">&nbsp;</td>
+<td style="text-align:center">&nbsp;</td>
+<td style="text-align:center">&nbsp;</td>
+<td style="text-align:center">&nbsp;</td>
+</tr>
+<tr>
+<td style="text-align:center"><font color="Red">4</font></td>
+<td style="text-align:center"><font color="Red">5V0</font></td>
+<td style="text-align:center">&nbsp;</td>
+<td style="text-align:center">&nbsp;</td>
+<td style="text-align:center">&nbsp;</td>
+<td style="text-align:center">&nbsp;</td>
+<td style="text-align:center">&nbsp;</td>
+<td style="text-align:center">&nbsp;</td>
+<td style="text-align:center">&nbsp;</td>
+<td style="text-align:center">&nbsp;</td>
+</tr>
+<tr>
+<td style="text-align:center">6</td>
+<td style="text-align:center">GND</td>
+<td style="text-align:center">&nbsp;</td>
+<td style="text-align:center">&nbsp;</td>
+<td style="text-align:center">&nbsp;</td>
+<td style="text-align:center">&nbsp;</td>
+<td style="text-align:center">&nbsp;</td>
+<td style="text-align:center">&nbsp;</td>
+<td style="text-align:center">&nbsp;</td>
+<td style="text-align:center">&nbsp;</td>
+</tr>
+<tr>
+<td style="text-align:center">8</td>
+<td style="text-align:center">&nbsp;</td>
+<td style="text-align:center">&nbsp;</td>
+<td style="text-align:center">&nbsp;</td>
+<td style="text-align:center">&nbsp;</td>
+<td style="text-align:center">&nbsp;</td>
+<td style="text-align:center">&nbsp;</td>
+<td style="text-align:center">&nbsp;</td>
+<td style="text-align:center">UART2_TXD</td>
+<td style="text-align:center">&nbsp;</td>
+</tr>
+<tr>
+<td style="text-align:center">10</td>
+<td style="text-align:center">&nbsp;</td>
+<td style="text-align:center">&nbsp;</td>
+<td style="text-align:center">&nbsp;</td>
+<td style="text-align:center">&nbsp;</td>
+<td style="text-align:center">&nbsp;</td>
+<td style="text-align:center">&nbsp;</td>
+<td style="text-align:center">&nbsp;</td>
+<td style="text-align:center">UART2_RXD</td>
+<td style="text-align:center">&nbsp;</td>
+</tr>
+<tr>
+<td style="text-align:center">12</td>
+<td style="text-align:center">GPIO1_A7</td>
+<td style="text-align:center">&nbsp;</td>
+<td style="text-align:center">PDM1_SDI0_M1</td>
+<td style="text-align:center">&nbsp;</td>
+<td style="text-align:center">&nbsp;</td>
+<td style="text-align:center">PWM3_IR_M3</td>
+<td style="text-align:center">&nbsp;</td>
+<td style="text-align:center">&nbsp;</td>
+<td style="text-align:center">&nbsp;</td>
+</tr>
+<tr>
+<td style="text-align:center">14</td>
+<td style="text-align:center">GND</td>
+<td style="text-align:center">&nbsp;</td>
+<td style="text-align:center">&nbsp;</td>
+<td style="text-align:center">&nbsp;</td>
+<td style="text-align:center">&nbsp;</td>
+<td style="text-align:center">&nbsp;</td>
+<td style="text-align:center">&nbsp;</td>
+<td style="text-align:center">&nbsp;</td>
+<td style="text-align:center">&nbsp;</td>
+</tr>
+<tr>
+<td style="text-align:center">16</td>
+<td style="text-align:center">GPIO1_A1</td>
+<td style="text-align:center">UART6_TX_M1</td>
+<td style="text-align:center">&nbsp;</td>
+<td style="text-align:center">&nbsp;</td>
+<td style="text-align:center">&nbsp;</td>
+<td style="text-align:center">&nbsp;</td>
+<td style="text-align:center">&nbsp;</td>
+<td style="text-align:center">&nbsp;</td>
+<td style="text-align:center">&nbsp;</td>
+</tr>
+<tr>
+<td style="text-align:center">18</td>
+<td style="text-align:center">GPIO1_A0</td>
+<td style="text-align:center">UART6_RX_M1</td>
+<td style="text-align:center">&nbsp;</td>
+<td style="text-align:center">&nbsp;</td>
+<td style="text-align:center">&nbsp;</td>
+<td style="text-align:center">&nbsp;</td>
+<td style="text-align:center">&nbsp;</td>
+<td style="text-align:center">&nbsp;</td>
+<td style="text-align:center">&nbsp;</td>
+</tr>
+<tr>
+<td style="text-align:center">20</td>
+<td style="text-align:center">GND</td>
+<td style="text-align:center">&nbsp;</td>
+<td style="text-align:center">&nbsp;</td>
+<td style="text-align:center">&nbsp;</td>
+<td style="text-align:center">&nbsp;</td>
+<td style="text-align:center">&nbsp;</td>
+<td style="text-align:center">&nbsp;</td>
+<td style="text-align:center">&nbsp;</td>
+<td style="text-align:center">&nbsp;</td>
+</tr>
+<tr>
+<td style="text-align:center">22</td>
+<td style="text-align:center">GPIO1_B0</td>
+<td style="text-align:center">&nbsp;</td>
+<td style="text-align:center">PDM1_SDI1_M1</td>
+<td style="text-align:center">&nbsp;</td>
+<td style="text-align:center">&nbsp;</td>
+<td style="text-align:center">&nbsp;</td>
+<td style="text-align:center">&nbsp;</td>
+<td style="text-align:center">&nbsp;</td>
+<td style="text-align:center">&nbsp;</td>
+</tr>
+<tr>
+<td style="text-align:center">24</td>
+<td style="text-align:center">GPIO1_B4</td>
+<td style="text-align:center">UART7_RX_M2</td>
+<td style="text-align:center">PDM1_CLK0_M1</td>
+<td style="text-align:center">&nbsp;</td>
+<td style="text-align:center">SPI0_CS0_M2</td>
+<td style="text-align:center">&nbsp;</td>
+<td style="text-align:center">&nbsp;</td>
+<td style="text-align:center">&nbsp;</td>
+<td style="text-align:center">&nbsp;</td>
+</tr>
+<tr>
+<td style="text-align:center">26</td>
+<td style="text-align:center">GPIO1_B5</td>
+<td style="text-align:center">UART7_TX_M2</td>
+<td style="text-align:center">&nbsp;</td>
+<td style="text-align:center">&nbsp;</td>
+<td style="text-align:center">SPI0_CS1_M2</td>
+<td style="text-align:center">&nbsp;</td>
+<td style="text-align:center">&nbsp;</td>
+<td style="text-align:center">&nbsp;</td>
+<td style="text-align:center">&nbsp;</td>
+</tr>
+<tr>
+<td style="text-align:center">28</td>
+<td style="text-align:center">&nbsp;</td>
+<td style="text-align:center">&nbsp;</td>
+<td style="text-align:center">&nbsp;</td>
+<td style="text-align:center">&nbsp;</td>
+<td style="text-align:center">I2C6_SCL_M3</td>
+<td style="text-align:center">&nbsp;</td>
+<td style="text-align:center">&nbsp;</td>
+<td style="text-align:center">&nbsp;</td>
+<td style="text-align:center">&nbsp;</td>
+</tr>
+<tr>
+<td style="text-align:center">30</td>
+<td style="text-align:center">GND</td>
+<td style="text-align:center">&nbsp;</td>
+<td style="text-align:center">&nbsp;</td>
+<td style="text-align:center">&nbsp;</td>
+<td style="text-align:center">&nbsp;</td>
+<td style="text-align:center">&nbsp;</td>
+<td style="text-align:center">&nbsp;</td>
+<td style="text-align:center">&nbsp;</td>
+<td style="text-align:center">&nbsp;</td>
+</tr>
+<tr>
+<td style="text-align:center">32</td>
+<td style="text-align:center">GPIO3_B1</td>
+<td style="text-align:center">&nbsp;</td>
+<td style="text-align:center">&nbsp;</td>
+<td style="text-align:center">&nbsp;</td>
+<td style="text-align:center">&nbsp;</td>
+<td style="text-align:center">&nbsp;</td>
+<td style="text-align:center">MIPI_CAM4_CLK_M1</td>
+<td style="text-align:center">PWM2_M1</td>
+<td style="text-align:center">&nbsp;</td>
+</tr>
+<tr>
+<td style="text-align:center">34</td>
+<td style="text-align:center">GND</td>
+<td style="text-align:center">&nbsp;</td>
+<td style="text-align:center">&nbsp;</td>
+<td style="text-align:center">&nbsp;</td>
+<td style="text-align:center">&nbsp;</td>
+<td style="text-align:center">&nbsp;</td>
+<td style="text-align:center">&nbsp;</td>
+<td style="text-align:center">&nbsp;</td>
+<td style="text-align:center">&nbsp;</td>
+</tr>
+<tr>
+<td style="text-align:center">36</td>
+<td style="text-align:center">GPIO4_B2</td>
+<td style="text-align:center">&nbsp;</td>
+<td style="text-align:center">&nbsp;</td>
+<td style="text-align:center">I2S1_SDO1_M0</td>
+<td style="text-align:center">&nbsp;</td>
+<td style="text-align:center">&nbsp;</td>
+<td style="text-align:center">&nbsp;</td>
+<td style="text-align:center">PWM14_M1</td>
+<td style="text-align:center">CAN1_RX_M1</td>
+</tr>
+<tr>
+<td style="text-align:center">38</td>
+<td style="text-align:center">GPIO4_B3</td>
+<td style="text-align:center">&nbsp;</td>
+<td style="text-align:center">&nbsp;</td>
+<td style="text-align:center">I2S1_SDO2_M0</td>
+<td style="text-align:center">&nbsp;</td>
+<td style="text-align:center">&nbsp;</td>
+<td style="text-align:center">&nbsp;</td>
+<td style="text-align:center">PWM15_IR_M1</td>
+<td style="text-align:center">CAN1_TX_M1</td>
+</tr>
+<tr>
+<td style="text-align:center">40</td>
+<td style="text-align:center">GPIO3_C3</td>
+<td style="text-align:center">&nbsp;</td>
+<td style="text-align:center">&nbsp;</td>
+<td style="text-align:center">&nbsp;</td>
+<td style="text-align:center">&nbsp;</td>
+<td style="text-align:center">&nbsp;</td>
+<td style="text-align:center">&nbsp;</td>
+<td style="text-align:center">PWM15_IR_M0</td>
+<td style="text-align:center">&nbsp;</td>
+</tr>
+</tbody>
+</table>
+<h2 id="getting-started">Getting Started </h2>
+<h3 id="preparation-of-accessories"><em>Preparation of accessories</em> </h3>
+<ul>
+<li>
+<p>Cp4b main board</p>
+</li>
+<li>
+<p>One of the Storage media below,Capacity greater than 8GB.</p>
+<ul>
+<li>TF Card</li>
+<li>Emmc module</li>
+<li>USB Flash Disk</li>
+</ul>
+</li>
+<li>
+<p>HDMI/DP interface display</p>
+<!-- <center><img src="assets/hdmi.png"></center> -->
+</li>
+<li>
+<p>USB Keyboard and Mouse</p>
+</li>
+<li>
+<p>Display cable</p>
+<ul>
+<li>MICRO HDMI to HDMI wire</li>
+</ul>
+<!-- <center><img src="assets/micro-hdmi.png"></center> -->
+<ul>
+<li>MINI DP to DP wire</li>
+</ul>
+<!-- <center><img src="assets/DP_jamsel8on.png"></center> -->
+<ul>
+<li>MINI DP to HDMI wire(Only supports active DP to HDMI cables)</li>
+</ul>
+</li>
+<li>
+<p>TF card reader,If using a USB Flash Disk, there is no need for it.</p>
+</li>
+<li>
+<p>Power adapter</p>
+<ul>
+<li>support 5V/3A 9V/2A 12V/1.5A</li>
+<li>support PD and QC self-adaption</li>
+</ul>
+</li>
+</ul>
+<h3 id="upgrade-firmware"><em>Upgrade Firmware</em> </h3>
+<ul>
+<li>
+<p>Obtain system image</p>
+<ul>
+<li>Obtain the official Ubuntu/Debian system image from <a href="https://pan.baidu.com/s/1CMBGGhGUMMDpg88-WulGWw?pwd=4rjd#list/path=%2Fsharelink1102153748621-436623026773232%2Fcoolpi%2FCoolPi%204B&amp;parentPath=%2Fsharelink1102153748621-436623026773232"><em>百度网盘</em></a></li>
+<li>Obtain the official Ubuntu/Debian system image from <a href="https://coolpi-my.sharepoint.com/personal/coolpi_coolpi_onmicrosoft_com/_layouts/15/onedrive.aspx?id=%2Fpersonal%2Fcoolpi%5Fcoolpi%5Fonmicrosoft%5Fcom%2FDocuments%2Fcoolpi&amp;ga=1"><em>Onedrive</em></a></li>
+</ul>
+</li>
+<li>
+<p>Operation steps</p>
+<ul>
+<li>TF Card:<br>
+Insert TF card into the card reader, and connect the card reader to the USB interface of the computer.</li>
+<li>Emmc module:<br>
+Using the EMMC module is a bit more complicated. First, you need to attach the EMMC module to the EMMC TO TF adapter board, then connect the adapter board to the TF card reader, and then connect the reader to the computer.</li>
+<li>USB Flash Disk:<br>
+If using a USB disk  as the storage medium, the USB disk is directly connected to the computer.</li>
+</ul>
+</li>
+<li>
+<p>Using <a href="https://etcher.download/download-etcher/"><em>Etcher</em></a></p>
+<ul>
+<li>In the etcher window, click flash from file.<br>
+<img src="assets/etcher1.png" alt="etcher1"></li>
+<li>In the etcher window, click select target.<br>
+<img src="assets/etcher2.png" alt="etcher2"></li>
+<li>In the etcher window, click Flash.<br>
+<img src="assets/etcher3.png" alt="etcher3"></li>
+<li>In the etcher window, once it shows us Flash<br>
+<img src="assets/etcher4.png" alt="etcher4">Complete! It is done and can be put into the cp4b.</li>
+</ul>
+</li>
+<li>
+<p>Using <a href="https://win32diskimager.org/"><em>Win32disk imager</em></a></p>
+<ul>
+<li>
+<p>In the Win32disk window, click Select image.</p>
+<p><img src="assets/win321.png" alt="etcher1"></p>
+</li>
+<li>
+<p>In the Win32disk window, click Select Drive.</p>
+<p><img src="assets/win322.png" alt="etcher2"></p>
+</li>
+<li>
+<p>In the Win32disk window, click Flash.</p>
+<p><img src="assets/win323.png" alt="etcher3"></p>
+</li>
+<li>
+<p>In the Win32disk window, once it shows us Flash.</p>
+<p><img src="assets/win324.png" alt="etcher4"></p>
+</li>
+<li>
+<p>Complete! It is done and can be put into the cp4b.</p>
+</li>
+</ul>
+</li>
+<li>
+<p>Using <a href="https://etcher.download/download-etcher/"><em>RKdevTool</em></a></p>
+<ul>
+<li>Short circuit the two pins as shown in the figure below, and then power on the machine to enter maskrom mode.<br>
+<img src="assets/maskrom1.png" alt="etcher4"></li>
+<li>One end of the USB cable with dual A-ports is connected to the USB3.0 OTG interface of the machine, and the other end is connected to the PC, as shown in the following figure. The tool recognizes the maskrom device.<br>
+<img src="assets/RK1.png" alt="etcher4"></li>
+<li>Select the loader and system image file, then select force write by address, and finally click run.<br>
+<img src="assets/RK2.png" alt="etcher4"></li>
+<li>After the image download is completed, the machine will automatically restart.<br>
+<img src="assets/RK3.png" alt="etcher4"></li>
+</ul>
+</li>
+<li>
+<p>Using <em>USB-UMS mode</em></p>
+<ul>
+<li>Only the EMMC module is supported.</li>
+<li>CP4b connects the USB 3.0 OTG interface between the PC and the machine through dual A-type USB cables, connects the power, and quickly presses the power button 5 times to enter UMS mode. This is a "system-boot" icon that will appear on the computer, and you can use Etcher or win32diskimager software to burn the system image. Actually, it's about virtualizing the machine as a usb disk.</li>
+<li><font color="Red"><em>If CP4b uses EMMC modules as storage media, it is strongly recommended to use UMS mode for development, which can avoid plugging and unplugging EMMC small boards and reduce the risk of small board connector damage.</em></font><br>
+<img src="assets/UMS.png" alt="etcher4"></li>
+</ul>
+</li>
+</ul>
+<h2 id="compile-kernel-source-code">Compile kernel source code </h2>
+<ul>
+<li>
+<p>To build a code compilation environment, you can use various Linux distributions to compile the CP4B kernel source code, such as Ubuntu, Debian, etc. The documentation uses Ubuntu 22.04 as an example for explanation.</p>
+</li>
+<li>
+<p>Both virtual and physical machines are possible.You can also directly compile the kernel source code on cp4b.</p>
+</li>
+<li>
+<p>Use the following command to obtain the cp4b kernel source code.</p>
+<pre data-role="codeBlock" data-info="" class="language-text text"><code>git clone https://github.com/yanyitech/coolpi-kernel.git 
+cd coolpi-kernel
+ ./build-kernel.sh cp4b
+</code></pre></li>
+</ul>
+<h2 id="update-cp4b-kernel">Update cp4b kernel </h2>
+<ul>
+<li>After compiling the root directory of the kernel source code, an out directory will be generated. The following methods can be used to update the kernel:</li>
+<li>Copy the out folder to a USB drive, then insert any USB interface of cp4b, and copy all files from the out directory to the machine/boot/firmware directory. Then extract the modules.tar.gz file to the machine/lib directory.<pre data-role="codeBlock" data-info="" class="language-text text"><code>cp out/* /boot/firmware/ -R
+sudo tar -zxvf /boot/firmware/modules.  tar.gz -C /lib  
+</code></pre></li>
+<li>The cp4b machine establishes a Samba shared directory, copies the out directory to the corresponding cp4b directory through the network, and then decompresses modules.tar.gz to the lib directory.<pre data-role="codeBlock" data-info="" class="language-text text"><code>sudo apt update
+sudo apt install samba
+mkdir /home/coolpi/share
+chmod -R 755 /home/coolpi/share
+sudo vim /etc/samba/smb.conf
+*Add the following code at the end of the file*
+[Share]
+comment = Shared Folder
+path = /home/coolpi/share
+browseable = yes
+read only = no
+guest ok = yes
+create mask = 0755
+directory mask = 0755
+sudo service smbd restart
+</code></pre></li>
+<li>The cp4b machine enters UMS mode, and then A drive letter named "system boot" will appear on the computer. It directly copies all files from the out directory to the system-boot, restarts cp4b, and then unzips module.tar.gz to the lib directory.<br>
+<img src="assets/udisk.png" alt="etcher4"></li>
+</ul>
+<h2 id="compile-uboot-source-code">Compile uboot source code </h2>
+<ul>
+<li>Use the following command to obtain and build the cp4b uboot source code.<pre data-role="codeBlock" data-info="" class="language-text text"><code>git clone https://github.com/yanyitech/coolpi-loader.git
+cd coolpi-loader
+./build-uboot.sh cp4b
+</code></pre></li>
+<li>After compilation, the root directory of the code will generate rk3588s_ Coolpi4b_out folder contains two files: loader.bin and uboot.img.<br>
+<img src="assets/loader.png" alt="etcher4"></li>
+</ul>
+<h2 id="update-cp4-uboot">Update cp4 uboot </h2>
+<ul>
+<li>Short circuit the maskrom and gnd test points, enter the maskrom mode of the machine, select the loader and uboot file paths, select the storage medium SPINOR, check the write by address, and then click run.<br>
+<img src="assets/loader1.png" alt="etcher4"></li>
+</ul>
+<h2 id="interface-function-testing">Interface function testing </h2>
+<ul>
+<li>
+<p>Using gpio sysfs to read and write io</p>
+<ul>
+<li>In Linux, the most common way to read and write gpio is to use the gpio sysfs interface, which is achieved by operating files such as export, unexport, gpio {N}/direction, and gpio {N}/value (replacing {N} with actual pin numbers) in the/sys/class/gpio directory, and often appears in shell scripts. For example, controlling GPIO4_A0(128) of cp4b in a shell:<pre data-role="codeBlock" data-info="" class="language-text text"><code>sudo su
+cd /sys/class/gpio
+echo 128 &gt; export
+echo out &gt; gpio128/direction       # io used for output
+echo 1 &gt; gpio128/value             # output logic 1 level
+echo 0 &gt; gpio128/value             # output logic 0 level
+echo 128 &gt; unexport
+</code></pre></li>
+<li>The gpio sysfs interface is currently widely used, but there are some issues, such as the inability to concurrently obtain sysfs properties and the basic design of interfaces for shells. So starting from Linux 4.8, gpiod replaced it.<pre data-role="codeBlock" data-info="" class="language-text text"><code>Since linux 4.8 the GPIO sysfs interface is deprecated. User space should use 
+the character device instead. This library encapsulates the ioctl calls and 
+data structures behind a straightforward API.
+</code></pre></li>
+</ul>
+</li>
+<li>
+<p>Using libgpiod to read and write gpio</p>
+<ul>
+<li>
+<p>The new design gpiod, gpio access control is achieved by manipulating character device files (such as/dev/gpiodchip0), and provides command tools, C libraries, and Python encapsulation through libgpiod.</p>
+</li>
+<li>
+<p>Through the gpioset, gpioget, and gpiomon provided by libgpiod, GPIO can be quickly read and written, and input events can be detected.</p>
+</li>
+<li>
+<p>Install the package for gpiod</p>
+<pre data-role="codeBlock" data-info="" class="language-text text"><code>sudo apt install -y gpiod  
+</code></pre></li>
+<li>
+<p>List gpio groups for cp4b</p>
+<pre data-role="codeBlock" data-info="" class="language-text text"><code>sudo gpiodetect                
+gpiochip0 [gpio0] (32 lines)
+gpiochip1 [gpio1] (32 lines)
+gpiochip2 [gpio2] (32 lines)
+gpiochip3 [gpio3] (32 lines)
+gpiochip4 [gpio4] (32 lines)
+gpiochip5 [rk806-gpio] (3 lines)
+</code></pre></li>
+<li>
+<p>List detailed information about group 4</p>
+<pre data-role="codeBlock" data-info="" class="language-text text"><code>sudo gpioinfo 4                
+gpiochip4 - 32 lines:
+      line   0:      unnamed       unused   input  active-high 
+      line   1:      unnamed       unused   input  active-high 
+      line   2:      unnamed       unused   input  active-high 
+      line   3:      unnamed       unused   input  active-high 
+      line   4:      unnamed       unused   input  active-high 
+      line   5:      unnamed       unused   input  active-high 
+      line   6:      unnamed       unused   input  active-high 
+      line   7:      unnamed       unused   input  active-high 
+      line   8:      unnamed       unused   input  active-high 
+      line   9:      unnamed       unused   input  active-high 
+      line  10:      unnamed       unused   input  active-high 
+      line  11:      unnamed       unused   input  active-high 
+      line  12:      unnamed       unused   input  active-high 
+      line  13:      unnamed       unused   input  active-high 
+      line  14:      unnamed     "enable"  output  active-high [used]
+      line  15:      unnamed       unused   input  active-high 
+      line  16:      unnamed       unused   input  active-high 
+      line  17:      unnamed       unused   input  active-high 
+      line  18:      unnamed       unused   input  active-high 
+      line  19:      unnamed       unused   input  active-high 
+      line  20:      unnamed       unused   input  active-high 
+      line  21:      unnamed       unused   input  active-high 
+      line  22:      unnamed       unused   input  active-high 
+      line  23:      unnamed       unused   input  active-high 
+      line  24:      unnamed       unused   input  active-high 
+      line  25:      unnamed       unused   input  active-high 
+      line  26:      unnamed       unused   input  active-high 
+      line  27:      unnamed       unused   input  active-high 
+      line  28:      unnamed       unused   input  active-high 
+      line  29:      unnamed       unused   input  active-high 
+      line  30:      unnamed       unused   input  active-high 
+      line  31:      unnamed       unused   input  active-high 
+</code></pre></li>
+<li>
+<p>Operate GPIO4_A0 to output high or low levels</p>
+<pre data-role="codeBlock" data-info="" class="language-text text"><code>sudo gpioset 4 0=1           # output logic 1 level
+sudo gpioset 4 0=0           # output logic 0 level
+</code></pre></li>
+<li>
+<p>Get GPIO4_ A0 level</p>
+<pre data-role="codeBlock" data-info="" class="language-text text"><code>sudo gpioget 4 0
+0                            # Read the value of GPIO4_A0 is 0
+</code></pre></li>
+<li>
+<p>The correspondence between commands and GPIO<br>
+For example：GPIO3_C3 ,GPIO3 represents GPIO group 3,C3 is the 19th(8*2+3) GPIO in this group.Therefore, the operation command of GPIO is:</p>
+<pre data-role="codeBlock" data-info="" class="language-text text"><code>sudo gpioset 3 19=1           # output logic 1 level
+sudo gpioset 3 19=0           # output logic 0 level
+</code></pre></li>
+</ul>
+<p><em>Using sysfs or gpiod, both are GPIO encapsulated interfaces using Linux. After encapsulation, the versatility is improved, but the performance may weaken. If you have studied 51 and ARM microcontrollers, the most familiar way to read and write GPIO is probably to directly operate the GPIO register, which is the fastest way to control the IO port. In Linux, you can also directly operate the GPIO register.</em></p>
+</li>
+<li>
+<p>Operation register controls gpio</p>
+<ul>
+<li>
+<p>In Linux, to directly read and write physical addresses, first open the device file/dev/mem, then use mmap to map the file, and finally read and write the corresponding registers based on the register address.</p>
+</li>
+<li>
+<p>You can use devmem2 to read and write physical memory addresses. If you cannot aptly install devmem2, you can <a href="https://github.com/vctlabs/devmem2">https://github.com/vctlabs/devmem2</a> Download and compile a copy.</p>
+<pre data-role="codeBlock" data-info="" class="language-text text"><code>sudo apt install devmem2
+</code></pre></li>
+<li>
+<p>The base addresses of 5 groups of GPIO registers</p>
+<table>
+<thead>
+<tr>
+<th style="text-align:center">Name</th>
+<th style="text-align:center">Address</th>
+<th style="text-align:center">Size</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align:center">GPIO0</td>
+<td style="text-align:center">FD8A0000</td>
+<td style="text-align:center">64KB</td>
+</tr>
+<tr>
+<td style="text-align:center">GPIO1</td>
+<td style="text-align:center">FEC20000</td>
+<td style="text-align:center">64KB</td>
+</tr>
+<tr>
+<td style="text-align:center">GPIO2</td>
+<td style="text-align:center">FEC30000</td>
+<td style="text-align:center">64KB</td>
+</tr>
+<tr>
+<td style="text-align:center">GPIO3</td>
+<td style="text-align:center">FEC40000</td>
+<td style="text-align:center">64KB</td>
+</tr>
+<tr>
+<td style="text-align:center">GPIO4</td>
+<td style="text-align:center">FEC50000</td>
+<td style="text-align:center">64KB</td>
+</tr>
+</tbody>
+</table>
+</li>
+<li>
+<p>Offset address corresponding to GPIO related registers</p>
+<table>
+<thead>
+<tr>
+<th style="text-align:center">Name</th>
+<th style="text-align:center">Address</th>
+<th style="text-align:center">Size</th>
+<th style="text-align:center">Reset Value</th>
+<th style="text-align:center">Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align:center">GPIO_SWPORT_DR_L</td>
+<td style="text-align:center">0x0000</td>
+<td style="text-align:center">W</td>
+<td style="text-align:center">0x00000000</td>
+<td style="text-align:center">Port Data Register (Low)</td>
+</tr>
+<tr>
+<td style="text-align:center">GPIO_SWPORT_DR_H</td>
+<td style="text-align:center">0x0004</td>
+<td style="text-align:center">W</td>
+<td style="text-align:center">0x00000000</td>
+<td style="text-align:center">Port Data Register (High)</td>
+</tr>
+<tr>
+<td style="text-align:center">GPIO_SWPORT_DDR_L</td>
+<td style="text-align:center">0x0008</td>
+<td style="text-align:center">W</td>
+<td style="text-align:center">0x00000000</td>
+<td style="text-align:center">Port Data Direction Register (Low)</td>
+</tr>
+<tr>
+<td style="text-align:center">GPIO_SWPORT_DDR_H</td>
+<td style="text-align:center">0x000C</td>
+<td style="text-align:center">W</td>
+<td style="text-align:center">0x00000000</td>
+<td style="text-align:center">Port Data Direction Register(High)</td>
+</tr>
+<tr>
+<td style="text-align:center">GPIO_EXT_PORT</td>
+<td style="text-align:center">0x0070</td>
+<td style="text-align:center">W</td>
+<td style="text-align:center">0x00000000</td>
+<td style="text-align:center">External Port Data Register</td>
+</tr>
+</tbody>
+</table>
+</li>
+<li>
+<p>Register Operation GPIO4_ A0<br>
+0xFEC50000 is the base address of GPIO4.<br>
+0x0008 is an input-output register, where the top 15 bits are write enable bits, the bottom 16 bits are corresponding GPIO input-output properties, 1 represents output, and 0 represents input.<br>
+0x0000 is a high-level offset register, where 1 represents high level and 0 represents low level.<br>
+0x0070 is an input level offset register with a total of 32 bits, representing 32 GPIO states. 1 represents the input high level, and 0 represents the input low level.</p>
+<pre data-role="codeBlock" data-info="" class="language-text text"><code>devmem2 0xFEC50008 w 0x00010001   #GPIO4_ A0 configured as output mode
+devmem2 0xFEC50000 w 0x00010001   #GPIO4_ A0 output high level
+devmem2 0xFEC50000 w 0x00010000   #GPIO4_ A0 output low level
+
+devmem2 0xFEC50008 w 0x00010000   #GPIO4_ A0 configured as input mode
+devmem2 0xFEC50070                #Get GPIO4_ A0 level
+/dev/mem opened.
+Memory mapped at address 0x7f86c81000.
+Value at address 0xFEC50070 (0x7f86c81070): 0x1F03EF00  #GPIO4_ A0 input value is 0
+</code></pre></li>
+</ul>
+</li>
+<li>
+<p>Operating the uart of the machine</p>
+<ul>
+<li>
+<p>The following table lists the pins of the 40PIN connector that can be used for UART function. Currently, in addition to debugging the serial port, it can also be extended to 5 independent serial ports. The maximum baud rate is 1.5M. The IO level is TTL 3.3V. Note: The serial port number does not correspond one-to-one with the actual system node, and actual operation needs to follow the corresponding device node in the table.</p>
+<table>
+<thead>
+<tr>
+<th style="text-align:center">Serial Number</th>
+<th style="text-align:center">Definition</th>
+<th style="text-align:center">Describe</th>
+<th style="text-align:center">IO Level</th>
+<th style="text-align:center">Device Node</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align:center">29</td>
+<td style="text-align:center">UART0_TX_M2</td>
+<td style="text-align:center">UART0 TXD</td>
+<td style="text-align:center">TTL 3.3V</td>
+<td style="text-align:center">/dev/ttyS6</td>
+</tr>
+<tr>
+<td style="text-align:center">31</td>
+<td style="text-align:center">UART0_RX_M2</td>
+<td style="text-align:center">UART0 RXD</td>
+<td style="text-align:center">TTL 3.3V</td>
+<td style="text-align:center">/dev/ttyS6</td>
+</tr>
+<tr>
+<td style="text-align:center">33</td>
+<td style="text-align:center">UART3_TX_M2</td>
+<td style="text-align:center">UART3 TXD</td>
+<td style="text-align:center">TTL 3.3V</td>
+<td style="text-align:center">/dev/ttyS3</td>
+</tr>
+<tr>
+<td style="text-align:center">35</td>
+<td style="text-align:center">UART3_RX_M2</td>
+<td style="text-align:center">UART3 RXD</td>
+<td style="text-align:center">TTL 3.3V</td>
+<td style="text-align:center">/dev/ttyS3</td>
+</tr>
+<tr>
+<td style="text-align:center">23</td>
+<td style="text-align:center">UART4_TX_M2</td>
+<td style="text-align:center">UART4 TXD</td>
+<td style="text-align:center">TTL 3.3V</td>
+<td style="text-align:center">/dev/ttyS4</td>
+</tr>
+<tr>
+<td style="text-align:center">19</td>
+<td style="text-align:center">UART4_RX_M2</td>
+<td style="text-align:center">UART4 RXD</td>
+<td style="text-align:center">TTL 3.3V</td>
+<td style="text-align:center">/dev/ttyS4</td>
+</tr>
+<tr>
+<td style="text-align:center">16</td>
+<td style="text-align:center">UART6_TX_M1</td>
+<td style="text-align:center">UART6 TXD</td>
+<td style="text-align:center">TTL 3.3V</td>
+<td style="text-align:center">/dev/ttyS2</td>
+</tr>
+<tr>
+<td style="text-align:center">18</td>
+<td style="text-align:center">UART6_RX_M1</td>
+<td style="text-align:center">UART6 RXD</td>
+<td style="text-align:center">TTL 3.3V</td>
+<td style="text-align:center">/dev/ttyS2</td>
+</tr>
+<tr>
+<td style="text-align:center">26</td>
+<td style="text-align:center">UART7_TX_M2</td>
+<td style="text-align:center">UART7 TXD</td>
+<td style="text-align:center">TTL 3.3V</td>
+<td style="text-align:center">/dev/ttyS7</td>
+</tr>
+<tr>
+<td style="text-align:center">24</td>
+<td style="text-align:center">UART7_RX_M2</td>
+<td style="text-align:center">UART7 RXD</td>
+<td style="text-align:center">TTL 3.3V</td>
+<td style="text-align:center">/dev/ttyS7</td>
+</tr>
+</tbody>
+</table>
+</li>
+<li>
+<p>DTS configuration<br>
+Configure the required serial port node properties to okay in DTS, recompile the kernel to generate a dtb file, and then replace the file in the /boot/firmware directory of the cp4b machine.</p>
+<pre data-role="codeBlock" data-info="" class="language-text text"><code>&amp;uart0 {
+  pinctrl-names = "default";
+  pinctrl-0 = &lt;&amp;uart0m2_xfer&gt;;
+  status = "okay";
+};
+
+&amp;uart3 {
+  pinctrl-names = "default";
+  pinctrl-0 = &lt;&amp;uart3m2_xfer&gt;;
+  status = "okay";
+};
+
+&amp;uart4 {
+  pinctrl-names = "default";
+  pinctrl-0 = &lt;&amp;uart4m2_xfer&gt;;
+  status = "okay";
+};
+
+&amp;uart6 {
+  pinctrl-names = "default";
+  pinctrl-0 = &lt;&amp;uart6m1_xfer&gt;;
+  status = "okay";
+};
+
+&amp;uart7 {
+  pinctrl-names = "default";
+  pinctrl-0 = &lt;&amp;uart7m2_xfer&gt;;
+  status = "okay";
+};
+</code></pre></li>
+<li>
+<p>Test Command</p>
+<pre data-role="codeBlock" data-info="" class="language-text text"><code>stty -F /dev/ttyS6 raw speed 115200             # Configure the serial port baud rate corresponding to PIN29 and PIN31 to be 115200
+echo "hello coolpi" &gt; /dev/ttyS6                # Send string   
+cat /dev/ttyS6                                  # Receive string
+</code></pre></li>
+</ul>
+</li>
+<li>
+<p>Operating the i2c of the machine</p>
+<ul>
+<li>
+<p>As shown in the table below, the 40PIN connector of coolpi 4b can lead out four sets of I2C buses. Among them, I2C1, I2C3, and I2C5 are independent I2C interfaces, which are not multiplexed with other devices inside the machine. The I2C6 board has an RTC clock chip HYM8563 connected to it, with an address of 51H. Therefore, when using the I2C6 port for external devices, be careful not to conflict addresses.</p>
+<table>
+<thead>
+<tr>
+<th style="text-align:center">Serial Number</th>
+<th style="text-align:center">Port Definition</th>
+<th style="text-align:center">Describe</th>
+<th style="text-align:center">Io Status</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align:center">3</td>
+<td style="text-align:center">I2C1_SDA_M2</td>
+<td style="text-align:center">I2C1 SDA</td>
+<td style="text-align:center">Internal 2.2K Pull up 3.3V</td>
+</tr>
+<tr>
+<td style="text-align:center">5</td>
+<td style="text-align:center">I2C1_SCL_M2</td>
+<td style="text-align:center">I2C1 SCL</td>
+<td style="text-align:center">Internal 2.2K Pull up 3.3V</td>
+</tr>
+<tr>
+<td style="text-align:center">33</td>
+<td style="text-align:center">I2C3_SDA_M2</td>
+<td style="text-align:center">I2C3 SDA</td>
+<td style="text-align:center">Internal 2.2K Pull up 3.3V</td>
+</tr>
+<tr>
+<td style="text-align:center">31</td>
+<td style="text-align:center">I2C3_SCL_M2</td>
+<td style="text-align:center">I2C3 SCL</td>
+<td style="text-align:center">Internal 2.2K Pull up 3.3V</td>
+</tr>
+<tr>
+<td style="text-align:center">37</td>
+<td style="text-align:center">I2C5_SDA_M2</td>
+<td style="text-align:center">I2C5 SDA</td>
+<td style="text-align:center">Internal 2.2K Pull up 3.3V</td>
+</tr>
+<tr>
+<td style="text-align:center">35</td>
+<td style="text-align:center">I2C5_SCL_M2</td>
+<td style="text-align:center">I2C5 SCL</td>
+<td style="text-align:center">Internal 2.2K Pull up 3.3V</td>
+</tr>
+<tr>
+<td style="text-align:center">27</td>
+<td style="text-align:center">I2C6_SDA_M3</td>
+<td style="text-align:center">I2C6 SDA</td>
+<td style="text-align:center">Internal 2.2K Pull up 3.3V</td>
+</tr>
+<tr>
+<td style="text-align:center">28</td>
+<td style="text-align:center">I2C6_SCL_M3</td>
+<td style="text-align:center">I2C6 SCL</td>
+<td style="text-align:center">Internal 2.2K Pull up 3.3V</td>
+</tr>
+</tbody>
+</table>
+</li>
+<li>
+<p>DTS configuration<br>
+The configuration method of the device driver should refer to the I2C6 node, and be careful not to use the I2C function to ensure that the node's status is disabled, otherwise it may cause other functional abnormalities.<br>
+After modifying the dts file, the kernel needs to be recompiled and the newly generated dtb file needs to be replaced in the cp4b /boot/firmware directory.</p>
+<pre data-role="codeBlock" data-info="" class="language-text text"><code>&amp;i2c1 {
+  status = "okay";
+  pinctrl-names = "default";
+  pinctrl-0 = &lt;&amp;i2c1m2_xfer&gt;;
+};
+
+&amp;i2c3 {
+  status = "okay";
+  pinctrl-names = "default";
+  pinctrl-0 = &lt;&amp;i2c3m2_xfer&gt;;
+};
+
+&amp;i2c5 {
+  status = "okay";
+  pinctrl-names = "default";
+  pinctrl-0 = &lt;&amp;i2c5m2_xfer&gt;;
+};
+
+&amp;i2c6 {
+  status = "okay";
+  pinctrl-names = "default";
+  pinctrl-0 = &lt;&amp;i2c6m3_xfer&gt;;
+
+  hym8563: hym8563@51 {
+    compatible = "haoyu,hym8563";
+    reg = &lt;0x51&gt;;
+    #clock-cells = &lt;0&gt;;
+    clock-frequency = &lt;32768&gt;;
+    clock-output-names = "hym8563";
+    pinctrl-names = "default";
+    pinctrl-0 = &lt;&amp;hym8563_int&gt;;
+    interrupt-parent = &lt;&amp;gpio0&gt;;
+    interrupts = &lt;RK_PB0 IRQ_TYPE_LEVEL_LOW&gt;;
+    status = "okay";
+  };
+};
+</code></pre></li>
+<li>
+<p>Test Command</p>
+<pre data-role="codeBlock" data-info="" class="language-text text"><code>git clone git://git.kernel.org/pub/scm/utils/i2c-tools/i2c-tools.git
+cd i2c-tools
+make -j8
+sudo make install
+root@ubuntu:/# i2cdetect -y 6
+    0  1  2  3  4  5  6  7  8  9  a  b  c  d  e  f
+00:                         -- -- -- -- -- -- -- -- 
+10: -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- 
+20: -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- 
+30: -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- 
+40: -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- 
+50: -- UU -- -- -- -- -- -- -- -- -- -- -- -- -- -- 
+60: -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- 
+70: -- -- -- -- -- -- -- --
+</code></pre></li>
+</ul>
+</li>
+<li>
+<p>Operating the spi of the machine</p>
+<ul>
+<li>
+<p>The serial number of the SPI interface corresponding to the 40PIN connector.</p>
+<table>
+<thead>
+<tr>
+<th style="text-align:center">Serial Number</th>
+<th style="text-align:center">Port Definition</th>
+<th style="text-align:center">Describe</th>
+<th style="text-align:center">Io Status</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align:center">19</td>
+<td style="text-align:center">SPI0_MOSI_M2</td>
+<td style="text-align:center">MOSI</td>
+<td style="text-align:center">Internal 2.2K Pull up 3.3V</td>
+</tr>
+<tr>
+<td style="text-align:center">21</td>
+<td style="text-align:center">SPI0_MISO_M2</td>
+<td style="text-align:center">MISO</td>
+<td style="text-align:center">Internal 2.2K Pull up 3.3V</td>
+</tr>
+<tr>
+<td style="text-align:center">23</td>
+<td style="text-align:center">SPI0_CLK_M2</td>
+<td style="text-align:center">CLK</td>
+<td style="text-align:center">Internal 2.2K Pull up 3.3V</td>
+</tr>
+<tr>
+<td style="text-align:center">24</td>
+<td style="text-align:center">SPI0_CS0_M2</td>
+<td style="text-align:center">CS0</td>
+<td style="text-align:center">Internal 2.2K Pull up 3.3V</td>
+</tr>
+<tr>
+<td style="text-align:center">26</td>
+<td style="text-align:center">SPI0_CS1_M2</td>
+<td style="text-align:center">CS1</td>
+<td style="text-align:center">Internal 2.2K Pull up 3.3V</td>
+</tr>
+</tbody>
+</table>
+</li>
+<li>
+<p>DTS Configuration</p>
+<pre data-role="codeBlock" data-info="" class="language-text text"><code>&amp;spi0 {
+  pinctrl-names = "default";
+  status = "okay";
+  max-freq = &lt;48000000&gt;; /* spi internal clk, don't modify */
+        spi_dev@0 {
+                compatible = "rockchip,spidev";
+                reg = &lt;0&gt;;
+                spi-max-frequency = &lt;12000000&gt;;
+                spi-lsb-first;
+        };
+
+        spi_dev@1 {
+                compatible = "rockchip,spidev";
+                reg = &lt;1&gt;;
+                spi-max-frequency = &lt;12000000&gt;;
+                spi-lsb-first;
+        };
+};
+</code></pre></li>
+<li>
+<p>Test Command<br>
+Loopback test requires short circuiting of pins 19 and 21</p>
+<pre data-role="codeBlock" data-info="" class="language-text text"><code>sudo apt-get install spi-tools                                          # Install tool software
+
+spi-config -d /dev/spidev0.0 -q                                         # Confirm the configuration of option 0
+/dev/spidev0.0: mode=0, lsb=0, bits=8, speed=12000000, spiready=0
+
+spi-config -d /dev/spidev0.1 -q                                         # Confirm the configuration of option 1
+/dev/spidev0.1: mode=0, lsb=0, bits=8, speed=12000000, spiready=0
+ 
+printf 'hello coolpi!' | spi-pipe -d /dev/spidev0.0 | hexdump -C        # Send string
+00000000  68 65 6c 6c 6f 20 63 6f  6f 6c 70 69 21           |hello coolpi!|
+0000000d  
+</code></pre></li>
+</ul>
+</li>
+<li>
+<p>Operating the pwm of the machine</p>
+<ul>
+<li>The serial number of the pwm interface corresponding to the 40PIN connector.
+<table>
+<thead>
+<tr>
+<th style="text-align:center">Serial Number</th>
+<th style="text-align:center">Port Definition</th>
+<th style="text-align:center">Describe</th>
+<th style="text-align:center">Io Status</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align:center">5</td>
+<td style="text-align:center">PWM3_IR_M0</td>
+<td style="text-align:center">PWM3</td>
+<td style="text-align:center">Internal 10K Pull up 3.3V</td>
+</tr>
+<tr>
+<td style="text-align:center">7</td>
+<td style="text-align:center">PWM13_M2</td>
+<td style="text-align:center">PWM13</td>
+<td style="text-align:center">Internal 47K Pull up 3.3V</td>
+</tr>
+<tr>
+<td style="text-align:center">12</td>
+<td style="text-align:center">PWM3_IR_M3</td>
+<td style="text-align:center">PWM3</td>
+<td style="text-align:center">Internal 47K Pull up 3.3V</td>
+</tr>
+<tr>
+<td style="text-align:center">32</td>
+<td style="text-align:center">PWM2_M1</td>
+<td style="text-align:center">PWM2</td>
+<td style="text-align:center">Internal 10K Pull up 3.3V</td>
+</tr>
+<tr>
+<td style="text-align:center">36</td>
+<td style="text-align:center">PWM14_M1</td>
+<td style="text-align:center">PWM14</td>
+<td style="text-align:center">Internal 2.2K Pull up 3.3V</td>
+</tr>
+<tr>
+<td style="text-align:center">38</td>
+<td style="text-align:center">PWM15_IR_M1</td>
+<td style="text-align:center">PWM15</td>
+<td style="text-align:center">Internal 2.2K Pull up 3.3V</td>
+</tr>
+<tr>
+<td style="text-align:center">40</td>
+<td style="text-align:center">PWM15_IR_M0</td>
+<td style="text-align:center">PWM15</td>
+<td style="text-align:center">Internal 2.2K Pull up 3.3V</td>
+</tr>
+</tbody>
+</table>
+</li>
+<li>DTS Configuration<br>
+Taking PWM3 as an example, first configure PWM enable in DTS, and then fill in the corresponding pins, as shown in the following figure, pinctrl needs to be configured. Then the status changes to okay.<pre data-role="codeBlock" data-info="" class="language-text text"><code>&amp;pwm3 {
+  pinctrl-0 = &lt;&amp;pwm3m3_pins&gt;;
+  status = "okay";
+};
+</code></pre></li>
+<li>Test Command<br>
+PWM provides an interface for the application layer. Under the/sys/class/PWM/node, after the PWM driver is successfully loaded, the PWM chip0 directory will be generated in the/sys/class/PWM/directory. If DTS is configured with multiple PWM controllers, multiple PWM chip nodes will be generated, and the names of the nodes will be determined by the registration order of the PWM controllers in the DTS file. Writing 0 to the export file opens the PWM timer 0, which will generate a PWM 0 directory. Conversely, writing 0 to Unexport will close the PWM timer, and the PWM 0 directory will be deleted. There are several files in this directory:<pre data-role="codeBlock" data-info="" class="language-text text"><code>root@Ubuntu:/sys/class/pwm# ls
+pwmchip0  pwmchip1  pwmchip2
+root@Ubuntu:/sys/class/pwm# cd pwmchip1
+root@Ubuntu:/sys/class/pwm/pwmchip1# ls
+device  export  npwm  power  subsystem  uevent  unexport
+root@Ubuntu:/sys/class/pwm/pwmchip1# echo 0 &gt;export 
+root@Ubuntu:/sys/class/pwm/pwmchip1# ls
+device  export  npwm  power  pwm0  subsystem  uevent  unexport
+root@Ubuntu:/sys/class/pwm/pwmchip1# cd pwm0/
+root@Ubuntu:/sys/class/pwm/pwmchip1/pwm0# ls
+capture  duty_cycle  enable  output_type  period  polarity  power  uevent
+</code></pre></li>
+<li>enable: write 1 to enable pwm, write 0 to disable pwm;</li>
+<li>polarity: there are two parameter options, normal or reversed, indicating the flipping of the output pin level;</li>
+<li>duty_ cycle: in normal mode, the duration of high level in one cycle (in nanoseconds), and in reversed mode, the duration of low level in one cycle (in nanoseconds);</li>
+<li>period: the period of the PWM wave (in nanoseconds);</li>
+<li>oneshot_ count: represents the number of PWM waveforms in one shot mode, and the value cannot exceed 255;</li>
+<li>The following is an example of pwmchip1. Set the pwm0 output frequency to 100K, duty cycle to 50%, polarity to positive, and output in Continuous mode:<pre data-role="codeBlock" data-info="" class="language-text text"><code>cd /sys/class/pwm/pwmchip1/
+echo 0 &gt; export
+cd pwm0
+echo 10000 &gt; period
+echo 5000 &gt; duty_cycle
+echo normal &gt; polarity
+echo 1 &gt; enable
+</code></pre></li>
+</ul>
+</li>
+<li>
+<p>Operating the can bus of the machine</p>
+<ul>
+<li>
+<p>The serial number of the can interface corresponding to the 40PIN connector.</p>
+<table>
+<thead>
+<tr>
+<th style="text-align:center">Serial Number</th>
+<th style="text-align:center">Port Definition</th>
+<th style="text-align:center">Describe</th>
+<th style="text-align:center">Io Status</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align:center">3</td>
+<td style="text-align:center">CAN2_TX_M1</td>
+<td style="text-align:center">TXD</td>
+<td style="text-align:center">Internal 10K Pull up 3.3V</td>
+</tr>
+<tr>
+<td style="text-align:center">5</td>
+<td style="text-align:center">CAN2_RX_M1</td>
+<td style="text-align:center">RXD</td>
+<td style="text-align:center">Internal 10K Pull up 3.3V</td>
+</tr>
+<tr>
+<td style="text-align:center">38</td>
+<td style="text-align:center">CAN1_TX_M1</td>
+<td style="text-align:center">TXD</td>
+<td style="text-align:center">Internal 47K Pull up 3.3V</td>
+</tr>
+<tr>
+<td style="text-align:center">36</td>
+<td style="text-align:center">CAN1_RX_M1</td>
+<td style="text-align:center">RXD</td>
+<td style="text-align:center">Internal 47K Pull up 3.3V</td>
+</tr>
+</tbody>
+</table>
+</li>
+<li>
+<p>The output of cp4b is the CAN signal of TTL. If normal communication is required, an interface conversion board needs to be added to convert the TTL signal into CANH CANL standard signal. The conversion circuit diagram is shown below:</p>
+</li>
+</ul>
+<p><img src="assets/CAN.png" alt="etcher4"></p>
+<ul>
+<li>DTS Configuration<br>
+The CAN2 interface and I2C1 are multiplexed, and if you want to use the CAN2 function, I2C1 must be turned off.The I2C1 attribute shown in the figure is configured as disabled, and the two CAN nodes are configured as okay.<pre data-role="codeBlock" data-info="" class="language-text text"><code>&amp;i2c1 {
+  status = "disabled";
+  pinctrl-names = "default";
+  pinctrl-0 = &lt;&amp;i2c1m2_xfer&gt;;
+};
+
+&amp;can1 {
+  pinctrl-names = "default";
+  pinctrl-0 = &lt;&amp;can1m1_pins&gt;;
+  status = "okay";
+};
+
+&amp;can2 {
+  pinctrl-names = "default";
+  pinctrl-0 = &lt;&amp;can2m1_pins&gt;;
+  status = "okay";
+};
+</code></pre></li>
+<li>Test Command<br>
+Canutils is a commonly used CAN communication testing tool package, which contains 5 unique programs: canconfig, candump, canecho, cansend, cansequence. The function description of this program is as follows:<br>
+<em>canconfig</em><br>
+The parameters used to configure the CAN bus interface mainly include baud rate and mode.<br>
+<em>candump</em><br>
+Receive data from the CAN bus interface and print it in hexadecimal format to standard output, or output it to a specified file.<br>
+<em>canecho</em><br>
+Resend all data received from the CAN bus interface to the CAN bus interface.<br>
+<em>cansend</em><br>
+Send the specified data to the specified CAN bus interface.<br>
+<em>cansequence</em><br>
+Automatically increment the number to the specified CAN bus interface, or specify the receiving mode and verify the received increment number.<br>
+<em>ip</em><br>
+CAN baud rate, functionality, and other configurations.<br>
+<em>Note: Busybox also integrates IP tools, but the version in Busybox is a castration version. CAN operation is not supported. Please confirm the version of the IP command (iproute 2) before using it.</em></li>
+<li>CAN normal command interface<br>
+Query current network devices:<pre data-role="codeBlock" data-info="" class="language-text text"><code>ifconfig -a
+</code></pre>CAN stop:<pre data-role="codeBlock" data-info="" class="language-text text"><code>ip link set can0 down
+</code></pre>Set the baud rate to 500KHz:<pre data-role="codeBlock" data-info="" class="language-text text"><code>ip link set can0 type can bitrate 500000
+</code></pre>Print can0 information:<pre data-role="codeBlock" data-info="" class="language-text text"><code>ip -details -statistics link show can0
+</code></pre>CAN start:<pre data-role="codeBlock" data-info="" class="language-text text"><code>ip link set can0 up
+</code></pre>CAN sending:<br>
+Send (standard frame, data frame, ID: 123, date: DEADBEEF):<pre data-role="codeBlock" data-info="" class="language-text text"><code>cansend can0 123#DEADBEEF
+</code></pre>Send (standard frame, remote frame, ID: 123):<pre data-role="codeBlock" data-info="" class="language-text text"><code>cansend can0 123#R
+</code></pre>Send (Extended frame, Data frame, ID: 0000123, date: DEADBEEF):<pre data-role="codeBlock" data-info="" class="language-text text"><code>cansend can0 00000123#12345678
+</code></pre>Send (Extended frame, Remote frame, ID: 0000123):<pre data-role="codeBlock" data-info="" class="language-text text"><code>cansend can0 00000123#R
+</code></pre>CAN reception:<br>
+Start printing and wait for reception:<pre data-role="codeBlock" data-info="" class="language-text text"><code>candump can0
+</code></pre></li>
+</ul>
+</li>
+</ul>
+<h2 id="common-problems-and-solutions">Common problems and solutions </h2>
+
+      </div>
+      
+      
+    
+    
+    
+    
+    
+    
+  
+    </body></html>
