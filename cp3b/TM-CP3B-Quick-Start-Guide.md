@@ -29,6 +29,12 @@
     -   Click on the terminal to enter the shell interface, where you can update various devices of the system or operating system.
         <div align=center>  <img src=".\image\image-8.png" width=50%></div>
 
+    -   You can also log in using the console interface
+        <div align=center>  <img src=".\image\console.png" width=50%></div>   
+
+    -   The console is a USB to serial chip CH340, and the driver needs to be [Download](https://www.wch.cn/download/file?id=65) and installed before use.
+  
+    -   The default baud rate for console serial port is 115200.
 ## Interface operation
 - Interface
    <div align=center>  <img src=".\image\port.png" width=50%></div>
