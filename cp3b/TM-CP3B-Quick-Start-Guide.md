@@ -87,11 +87,13 @@
         - The default WIFI module model used by the machine is RTL8852BE, Supports WIFI6 and BT5.2 protocols. <br>
         - The system has already integrated drivers and firmware by default, and can be used by plugging in the module.<br>
         - Users can replace different WIFI modules according to their actual product needs, with M.2 (PCIe+USB) interface.
+
         <div align=center>  <img src=".\image\wifi.png" width=50%></div>
 
     -   LORA WAN
-  
+
         - CP3B supports LORA WAN modules with SPI interfaces, such as the EBYTE E106 series, as shown in the following figure, which defaults to using the MINI-PCIE interface.
+        - 
         <div align=center>  <img src=".\image\e106.png" width=50%></div>
 
         - Test according to the following steps.
