@@ -78,13 +78,58 @@
         <div align=center>  <img src=".\image\image-10.png" width=50%></div>
 
     -   WIFI
-
         - The default WIFI module model used by the machine is RTL8852BE, Supports WIFI6 and BT5.2 protocols. <br>
         - The system has already integrated drivers and firmware by default, and can be used by plugging in the module.<br>
         - Users can replace different WIFI modules according to their actual product needs, with M.2 (PCIe+USB) interface.
+        <div align=center>  <img src=".\image\wifi.png" width=50%></div>
 
     -   LORA WAN
   
+        - CP3B supports LORA WAN modules with SPI interfaces, such as the EBYTE E106 series, as shown in the following figure, which defaults to using the MINI-PCIE interface.
+        <div align=center>  <img src=".\image\e106.png" width=50%></div>
+
+        - Test according to the following steps.
+
+        ```
+        git clone https://github.com/coolpi-george/sx1302.git /*Clone code to any path on the CP3B*/
+        cd sx1302
+        make clean all
+        make -j8
+        cp tools/reset_lgw.sh util_chip_id/
+        cp tools/reset_lgw.sh packet_forwarder/
+        cp tools/reset_lgw.sh libloragw/
+        cd util_chip_id/
+        sudo ./chip_id                                       /*Obtain module EUI*/
+        [sudo] password for admin:  
+        CoreCell reset through GPIO36...
+        Opening SPI communication interface
+        Note: chip version is 0x10 (v1.0)
+        INFO: using legacy timestamp
+        ARB: dual demodulation disabled for all SF
+
+        INFO: concentrator EUI: 0x0016c001f11a1f85
+
+        Closing SPI communication interface
+        CoreCell reset through GPIO36...
+        cd libloragw/
+        sudo ./test_loragw_reg                             /*Traverse the registers of the module*/
+        CoreCell reset through GPIO36...
+        Opening SPI communication interface
+        Note: chip version is 0x10 (v1.0)
+        ## TEST#1: read all registers and check default value for non-read-only registers
+        ------------------
+         TEST#1 PASSED
+        ------------------
+
+        ## TEST#2: read/write test on all non-read-only, non-pulse, non-w0clr, non-w1clr registers
+        ------------------
+         TEST#2 PASSED                                    /*The successful identification module is running normally*/
+        ------------------
+
+        Closing SPI communication interface
+        CoreCell reset through GPIO36...
+        ```
+        - Configure as gateway and connect to TNN server according to [Official Documents](https://semtech.my.salesforce.com/sfc/p/#E0000000JelG/a/RQ0000043BUT/kDK2Unqnoazf9_UbC7um6mY7NnVzIWECoCudd3xuUnU).
     -   CAN
          - Implements CAN V2.0B at 1Mb/s.
          - Two receive buffers with prioritized message storage.
@@ -178,7 +223,7 @@
         Pay attention to the insertion direction of the SIM card as shown in the figure below, with the notch facing outward.
         <div align=center>  <img src=".\image\sim.png" width=50%></div>
   -  How to modify the startup image?
-        - Modify the content of the attached image and copy it to the/boot/firmware directory of the machine.
+        - Modify the content of the attached image and copy it to the /boot/firmware directory of the machine.
         - Be sure not to change the file name and format (BMP).
         <div align=center>  <img src=".\image\logo.bmp" width=50%></div>
         <div align=center>  <img src=".\image\logo_kernel.bmp" width=50%></div>
