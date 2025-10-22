@@ -119,8 +119,8 @@
         ```
         <div align=center>  <img src=".\image\lora-2.png" width=50%></div>       
 ## Update the firmware
-- Download firmware and upgrade tools from Baidu Cloud or OneDrive.
-<div align=center>  <img src=".\image\0000.png" width=50%></div>
+- Download firmware and upgrade tools from [Google Drive](https://drive.google.com/drive/folders/1rpwDABPB5bxYspOhQ6YbhDFaWXRB4QgH?usp=sharing)or[Baidu Cloud](https://pan.baidu.com/s/1hJfx2A-HToroDK6UYPIOIQ?pwd=eut4) .
+<div align=center>  <img src=".\image\google.png" width=50%></div>
 
 - Connect the USB port of CP1b to the computer.
 - Install USB driver using the DriveAssitant-v5.12 tool.
@@ -178,6 +178,31 @@
         
         Pay attention to the insertion direction of the SIM card as shown in the figure below, with the notch facing outward.
         <div align=center>  <img src=".\image\sim.png" width=50%></div>
+
+  -  How to Backup File System?  
+    In the process of user development, after building their own application, it is usually necessary to back up the file system and then copy it to other machines. The following provides [backup scripts](https://forum.cool-pi.com/assets/uploads/files/1761125092204-backup-cp1b.sh) and operation methods:  
+
+       -  It is best to use a file system with a capacity greater than twice that of a USB flash drive, for example, if the file system is 4GB, choose an 8GB capacity USB flash drive and format it in NTFS format.  
+       -  Copy the script file to a USB drive.  
+       -  Insert the USB drive into the USB port of the CP1B machine and turn it on.  
+       -  Use the following command to mount a USB drive to the/mnt directory.  
+        ``` sudo mount /dev/sda1 /mnt```  
+       -  Enter the/mnt directory and execute the script.    
+            ``` 
+            cd /mnt  
+            sudo ./backup-cp1b.sh
+            ```
+       - After the script is executed, the root directory of the USB drive will generate a * * *. img file, which can be used to replace the rootfs. img file in the compressed image file.
+        <div align=center>  <img src=".\image\replace.png" width=50%></div>
+  - How to make mass production firmware?  
+    The mass production process can be completed using production tools, which require loading production firmware and cannot use development firmware. The following steps for generating production firmware are introduced:  
+       - Open the SocToolKit software and select the chip model and storage type as shown in the following figure.    
+    <div align=center>  <img src=".\image\update-1.png" width=50%></div>
+       - Right click on the watch to add files.
+    <div align=center>  <img src=".\image\update-2.png" width=50%></div>
+       - Select 6 files and click Create, wait for the creation to complete.
+    <div align=center>  <img src=".\image\update-3.png" width=50%></div>
+
 
 
   
