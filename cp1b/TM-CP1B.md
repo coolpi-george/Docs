@@ -15,7 +15,7 @@
 
         <div align=center>  <img src=".\image\image-2.png" width=50%></div>
 
-    -   The machine with the device name coolpi in the scanning results corresponds to the DHCP address of the machine.
+    -   The machine with the device name cp1b in the scanning results corresponds to the DHCP address of the machine.
 
 - Login device<br>
     -   Enter the following link in the browser to enter the login interface:<br>

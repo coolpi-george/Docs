@@ -1,0 +1,609 @@
+<!DOCTYPE html>
+<html>
+<head>
+<title>TM-CP2B.md</title>
+<meta http-equiv="Content-type" content="text/html;charset=UTF-8">
+
+<style>
+/* https://github.com/microsoft/vscode/blob/master/extensions/markdown-language-features/media/markdown.css */
+/*---------------------------------------------------------------------------------------------
+ *  Copyright (c) Microsoft Corporation. All rights reserved.
+ *  Licensed under the MIT License. See License.txt in the project root for license information.
+ *--------------------------------------------------------------------------------------------*/
+
+body {
+	font-family: var(--vscode-markdown-font-family, -apple-system, BlinkMacSystemFont, "Segoe WPC", "Segoe UI", "Ubuntu", "Droid Sans", sans-serif);
+	font-size: var(--vscode-markdown-font-size, 14px);
+	padding: 0 26px;
+	line-height: var(--vscode-markdown-line-height, 22px);
+	word-wrap: break-word;
+}
+
+#code-csp-warning {
+	position: fixed;
+	top: 0;
+	right: 0;
+	color: white;
+	margin: 16px;
+	text-align: center;
+	font-size: 12px;
+	font-family: sans-serif;
+	background-color:#444444;
+	cursor: pointer;
+	padding: 6px;
+	box-shadow: 1px 1px 1px rgba(0,0,0,.25);
+}
+
+#code-csp-warning:hover {
+	text-decoration: none;
+	background-color:#007acc;
+	box-shadow: 2px 2px 2px rgba(0,0,0,.25);
+}
+
+body.scrollBeyondLastLine {
+	margin-bottom: calc(100vh - 22px);
+}
+
+body.showEditorSelection .code-line {
+	position: relative;
+}
+
+body.showEditorSelection .code-active-line:before,
+body.showEditorSelection .code-line:hover:before {
+	content: "";
+	display: block;
+	position: absolute;
+	top: 0;
+	left: -12px;
+	height: 100%;
+}
+
+body.showEditorSelection li.code-active-line:before,
+body.showEditorSelection li.code-line:hover:before {
+	left: -30px;
+}
+
+.vscode-light.showEditorSelection .code-active-line:before {
+	border-left: 3px solid rgba(0, 0, 0, 0.15);
+}
+
+.vscode-light.showEditorSelection .code-line:hover:before {
+	border-left: 3px solid rgba(0, 0, 0, 0.40);
+}
+
+.vscode-light.showEditorSelection .code-line .code-line:hover:before {
+	border-left: none;
+}
+
+.vscode-dark.showEditorSelection .code-active-line:before {
+	border-left: 3px solid rgba(255, 255, 255, 0.4);
+}
+
+.vscode-dark.showEditorSelection .code-line:hover:before {
+	border-left: 3px solid rgba(255, 255, 255, 0.60);
+}
+
+.vscode-dark.showEditorSelection .code-line .code-line:hover:before {
+	border-left: none;
+}
+
+.vscode-high-contrast.showEditorSelection .code-active-line:before {
+	border-left: 3px solid rgba(255, 160, 0, 0.7);
+}
+
+.vscode-high-contrast.showEditorSelection .code-line:hover:before {
+	border-left: 3px solid rgba(255, 160, 0, 1);
+}
+
+.vscode-high-contrast.showEditorSelection .code-line .code-line:hover:before {
+	border-left: none;
+}
+
+img {
+	max-width: 100%;
+	max-height: 100%;
+}
+
+a {
+	text-decoration: none;
+}
+
+a:hover {
+	text-decoration: underline;
+}
+
+a:focus,
+input:focus,
+select:focus,
+textarea:focus {
+	outline: 1px solid -webkit-focus-ring-color;
+	outline-offset: -1px;
+}
+
+hr {
+	border: 0;
+	height: 2px;
+	border-bottom: 2px solid;
+}
+
+h1 {
+	padding-bottom: 0.3em;
+	line-height: 1.2;
+	border-bottom-width: 1px;
+	border-bottom-style: solid;
+}
+
+h1, h2, h3 {
+	font-weight: normal;
+}
+
+table {
+	border-collapse: collapse;
+}
+
+table > thead > tr > th {
+	text-align: left;
+	border-bottom: 1px solid;
+}
+
+table > thead > tr > th,
+table > thead > tr > td,
+table > tbody > tr > th,
+table > tbody > tr > td {
+	padding: 5px 10px;
+}
+
+table > tbody > tr + tr > td {
+	border-top: 1px solid;
+}
+
+blockquote {
+	margin: 0 7px 0 5px;
+	padding: 0 16px 0 10px;
+	border-left-width: 5px;
+	border-left-style: solid;
+}
+
+code {
+	font-family: Menlo, Monaco, Consolas, "Droid Sans Mono", "Courier New", monospace, "Droid Sans Fallback";
+	font-size: 1em;
+	line-height: 1.357em;
+}
+
+body.wordWrap pre {
+	white-space: pre-wrap;
+}
+
+pre:not(.hljs),
+pre.hljs code > div {
+	padding: 16px;
+	border-radius: 3px;
+	overflow: auto;
+}
+
+pre code {
+	color: var(--vscode-editor-foreground);
+	tab-size: 4;
+}
+
+/** Theming */
+
+.vscode-light pre {
+	background-color: rgba(220, 220, 220, 0.4);
+}
+
+.vscode-dark pre {
+	background-color: rgba(10, 10, 10, 0.4);
+}
+
+.vscode-high-contrast pre {
+	background-color: rgb(0, 0, 0);
+}
+
+.vscode-high-contrast h1 {
+	border-color: rgb(0, 0, 0);
+}
+
+.vscode-light table > thead > tr > th {
+	border-color: rgba(0, 0, 0, 0.69);
+}
+
+.vscode-dark table > thead > tr > th {
+	border-color: rgba(255, 255, 255, 0.69);
+}
+
+.vscode-light h1,
+.vscode-light hr,
+.vscode-light table > tbody > tr + tr > td {
+	border-color: rgba(0, 0, 0, 0.18);
+}
+
+.vscode-dark h1,
+.vscode-dark hr,
+.vscode-dark table > tbody > tr + tr > td {
+	border-color: rgba(255, 255, 255, 0.18);
+}
+
+</style>
+
+<style>
+/* Tomorrow Theme */
+/* http://jmblog.github.com/color-themes-for-google-code-highlightjs */
+/* Original theme - https://github.com/chriskempson/tomorrow-theme */
+
+/* Tomorrow Comment */
+.hljs-comment,
+.hljs-quote {
+	color: #8e908c;
+}
+
+/* Tomorrow Red */
+.hljs-variable,
+.hljs-template-variable,
+.hljs-tag,
+.hljs-name,
+.hljs-selector-id,
+.hljs-selector-class,
+.hljs-regexp,
+.hljs-deletion {
+	color: #c82829;
+}
+
+/* Tomorrow Orange */
+.hljs-number,
+.hljs-built_in,
+.hljs-builtin-name,
+.hljs-literal,
+.hljs-type,
+.hljs-params,
+.hljs-meta,
+.hljs-link {
+	color: #f5871f;
+}
+
+/* Tomorrow Yellow */
+.hljs-attribute {
+	color: #eab700;
+}
+
+/* Tomorrow Green */
+.hljs-string,
+.hljs-symbol,
+.hljs-bullet,
+.hljs-addition {
+	color: #718c00;
+}
+
+/* Tomorrow Blue */
+.hljs-title,
+.hljs-section {
+	color: #4271ae;
+}
+
+/* Tomorrow Purple */
+.hljs-keyword,
+.hljs-selector-tag {
+	color: #8959a8;
+}
+
+.hljs {
+	display: block;
+	overflow-x: auto;
+	color: #4d4d4c;
+	padding: 0.5em;
+}
+
+.hljs-emphasis {
+	font-style: italic;
+}
+
+.hljs-strong {
+	font-weight: bold;
+}
+</style>
+
+<style>
+/*
+ * Markdown PDF CSS
+ */
+
+ body {
+	font-family: -apple-system, BlinkMacSystemFont, "Segoe WPC", "Segoe UI", "Ubuntu", "Droid Sans", sans-serif, "Meiryo";
+	padding: 0 12px;
+}
+
+pre {
+	background-color: #f8f8f8;
+	border: 1px solid #cccccc;
+	border-radius: 3px;
+	overflow-x: auto;
+	white-space: pre-wrap;
+	overflow-wrap: break-word;
+}
+
+pre:not(.hljs) {
+	padding: 23px;
+	line-height: 19px;
+}
+
+blockquote {
+	background: rgba(127, 127, 127, 0.1);
+	border-color: rgba(0, 122, 204, 0.5);
+}
+
+.emoji {
+	height: 1.4em;
+}
+
+code {
+	font-size: 14px;
+	line-height: 19px;
+}
+
+/* for inline code */
+:not(pre):not(.hljs) > code {
+	color: #C9AE75; /* Change the old color so it seems less like an error */
+	font-size: inherit;
+}
+
+/* Page Break : use <div class="page"/> to insert page break
+-------------------------------------------------------- */
+.page {
+	page-break-after: always;
+}
+
+</style>
+
+<script src="https://unpkg.com/mermaid/dist/mermaid.min.js"></script>
+</head>
+<body>
+  <script>
+    mermaid.initialize({
+      startOnLoad: true,
+      theme: document.body.classList.contains('vscode-dark') || document.body.classList.contains('vscode-high-contrast')
+          ? 'dark'
+          : 'default'
+    });
+  </script>
+<h1 id="tm-cp2b-quick-start-guide">TM-CP2B Quick Start Guide</h1>
+<div align=center>  <img src=".\image\侧视.jpg" width=50%></div>
+<h2 id="login-steps">Login steps</h2>
+<ul>
+<li>
+<p>Connect the power and plug in the network cable</p>
+<ul>
+<li>
+<p>The power supply range is 9V-36V, with the negative terminal near the LED end. <br>Note: Incorrect polarity can cause damage to the machine.</p>
+<div align=center>  <img src=".\image\极性.jpg" width=30%></div>
+</li>
+<li>
+<p>The default network connection method of the machine is DHCP to automatically obtain an IP address.<br>
+After the network is connected normally, the two indicator lights on the network port will light up simultaneously.</p>
+</li>
+</ul>
+</li>
+<li>
+<p>Obtain the IP address of the machine<br></p>
+<ul>
+<li>
+<p>Use LAN IP address scanning software <a href="https://download.advanced-ip-scanner.com/download/files/Advanced_IP_Scanner_2.5.4594.1.exe">Advanced_IP_Scanner</a> to obtain all scanned LAN IP addresses.</p>
+</li>
+<li>
+<p>After downloading and installing the software, open the software and you will see the following interface. Click Scan to start scanning.The IP address corresponding to the &quot;CP2B&quot; device is the actual IP address of the machine.</p>
+<div align=center>  <img src=".\image\IP.jpg" width=50%></div>
+</li>
+<li>
+<p>The machine with the device name cp2b in the scanning results corresponds to the DHCP address of the machine.</p>
+</li>
+</ul>
+</li>
+<li>
+<p>Login device<br></p>
+<ul>
+<li>
+<p>Enter the following link in the browser to enter the login interface:<br>
+https://your_ipaddress:9090/<br><br>
+Replace &quot;your_ipaddress&quot; with the actual IP address of the machine.<br></p>
+<div align=center>  <img src=".\image\logic.jpg" width=50%></div>
+</li>
+<li>
+<p>Enter your username and password, then click login.<br> The default username for the machine is &quot;admin&quot;, and the password is &quot;admin&quot;.</p>
+<div align=center>  <img src=".\image\logic1.jpg" width=50%></div>
+</li>
+<li>
+<p>Click on the terminal to enter the shell interface, where you can update various devices of the system or operating system.</p>
+<div align=center>  <img src=".\image\shell.jpg" width=50%></div>
+</li>
+<li>
+<p>You can also log in to the machine using SSH or console interface. The machine does not have SSH service installed by default. Please refer to the following command for installation:</p>
+<pre class="hljs"><code><div>sudo apt install ssh
+</div></code></pre>
+<p>The machine integrates a USB to UART circuit internally, and uses a Type-C cable to connect the console interface to the computer. The computer will detect a serial device, and if it is used for the first time, a <a href="https://www.wch.cn/download/file?id=65">USB driver</a> is required.</p>
+</li>
+</ul>
+</li>
+</ul>
+<h2 id="interface-operation">Interface operation</h2>
+<ul>
+<li>Interface
+<ul>
+<li>
+<p>The correspondence between ttySx device nodes and interfaces.</p>
+<p>ttyS1 -- RS485-2(A2 B2)</p>
+<p>ttyS2 -- RS485-1(A1 B1)</p>
+<p>ttyS3 -- TTL(TX RX)</p>
+<p>ttyS4 -- LORA</p>
+<p>spidev0.0 -- LORA-WAN</p>
+<p>ttyUSB0-ttyUSB3 -- 4G-LTE</p>
+</li>
+<li>
+<p>RS485&amp;TTL</p>
+<pre class="hljs"><code><div>stty -F /dev/ttyS1 raw speed 115200 //Configure RS485 baud rate to 115200
+echo &quot;hello world&quot; &gt; /dev/ttyS1     //Send &quot;hello world&quot; to RS485 port
+</div></code></pre>
+<p>You can also operate the serial port through C or Python.</p>
+</li>
+<li>
+<p>4G-LTE</p>
+<p>After inserting the 4G module and SIM card, the machine will automatically complete the dialing operation after booting up.</p>
+<p>After successful dialing, the system will display the following ppp0 network nodes.</p>
+<p>The default 4G-LET module model currently used is EC20.</p>
+<div align=center>  <img src=".\image\4G.png" width=50%></div>
+</li>
+<li>
+<p>WIFI&amp;BT</p>
+<p>The default WIFI module model used by the machine is BL-M8800DU6-D80, which uses the AIC8800D80 chip. Support wifi 802.11a/b/g/n/ac/ax and bt5.4.<br>
+The system has already integrated drivers and firmware by default, and can be used by plugging in the module.</p>
+<div align=center>  <img src=".\image\WIFI.png" width=50%></div>
+</li>
+<li>
+<p>LORA-WAN</p>
+<ul>
+<li>CP2B supports LORA WAN modules with SPI interfaces, such as the EBYTE E106 series, as shown in the following figure, which defaults to using the MINI-PCIE interface.</li>
+</ul>
+<div align=center>  <img src=".\image\E106.png" width=50%></div>
+<ul>
+<li>
+<p>Test according to the following steps.</p>
+<pre class="hljs"><code><div>    git clone https://github.com/coolpi-george/sx1302.git /*Clone code to any path on the CP3B*/
+    cd sx1302
+    git checkout cp2b
+    make clean all
+    make -j8
+    cp tools/reset_lgw.sh util_chip_id/
+    cp tools/reset_lgw.sh packet_forwarder/
+    cp tools/reset_lgw.sh libloragw/
+    cd util_chip_id/
+    sudo ./chip_id                                       /*Obtain module EUI*/
+    [sudo] password for admin:  
+    CoreCell reset through GPIO55...
+    Opening SPI communication interface
+    Note: chip version is 0x10 (v1.0)
+    INFO: using legacy timestamp
+    ARB: dual demodulation disabled for all SF
+
+    INFO: concentrator EUI: 0x0016c001f11a1f85
+
+    Closing SPI communication interface
+    CoreCell reset through GPIO55...
+    cd libloragw/
+    sudo ./test_loragw_reg                             /*Traverse the registers of the module*/
+    CoreCell reset through GPIO55...
+    Opening SPI communication interface
+    Note: chip version is 0x10 (v1.0)
+    ## TEST#1: read all registers and check default value for non-read-only registers
+    ------------------
+     TEST#1 PASSED
+    ------------------
+
+    ## TEST#2: read/write test on all non-read-only, non-pulse, non-w0clr, non-w1clr registers
+    ------------------
+     TEST#2 PASSED                                    /*The successful identification module is running normally*/
+    ------------------
+
+    Closing SPI communication interface
+    CoreCell reset through GPIO55...
+    ```
+    - Configure as gateway and connect to TNN server according to [Official Documents](https://semtech.my.salesforce.com/sfc/p/ #E0000000JelG/a/RQ0000043BUT/kDK2Unqnoazf9_UbC7um6mY7NnVzIWECoCudd3xuUnU).
+</div></code></pre>
+</li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+<h2 id="update-the-firmware">Update the firmware</h2>
+<ul>
+<li>Download firmware and upgrade tools from <a href="https://drive.google.com/drive/folders/1rpwDABPB5bxYspOhQ6YbhDFaWXRB4QgH?usp=sharing">Google Drive</a>or<a href="https://pan.baidu.com/s/1hJfx2A-HToroDK6UYPIOIQ?pwd=eut4">Baidu Cloud</a> .</li>
+</ul>
+<div align=center>  <img src=".\image\google.jpg" width=50%></div>
+<ul>
+<li>Connect the USB port of CP2b to the computer.</li>
+</ul>
+<div align=center>  <img src=".\image\USB.jpg" width=50%></div>
+<ul>
+<li>Install USB driver using the DriveAssitant-v5.12 tool.</li>
+</ul>
+<div align=center>  <img src=".\image\0001.png" width=50%></div>
+<ul>
+<li>Press and hold the REC button on the machine, then turn on the power and the machine will enter MASKROM mode.</li>
+</ul>
+<div align=center>  <img src=".\image\key.JPG" width=50%></div>
+<ul>
+<li>Open RKdevtool, by default, the firmware path has already been selected. Click on 'Run' directly.</li>
+</ul>
+<div align=center>  <img src=".\image\download.jpg" width=50%></div>
+<h2 id="compile-and-update-the-kernel">Compile and update the kernel</h2>
+<ul>
+<li>
+<p>Synchronize kernel code and compile</p>
+<pre class="hljs"><code><div>git clone https://github.com/coolpi-george/coolpi-kernel.git
+git checkout linux-6.1-stan-rkr5.1
+./build-kernel.sh arm
+</div></code></pre>
+</li>
+<li>
+<p>update kernel</p>
+<p>After compilation, the following deb file will be generated and copied to the machine for installation using the &quot;dpkg -i linux-image-6.1.115_6.1.115-21_armhf.deb&quot; command.</p>
+<div align=center>  <img src=".\image\DEB.jpg" width=50%></div>     
+</li>
+</ul>
+<h2 id="common-problems-and-solutions">Common problems and solutions</h2>
+<ul>
+<li>
+<p>How to change default password？</p>
+<pre class="hljs"><code><div>sudo passwd admin
+</div></code></pre>
+</li>
+<li>
+<p>How to add a new user?
+As shown in the following figure, new users can be added and permissions can be configured through the backend management software.</p>
+   <div align=center>  <img src=".\image\user.jpg" width=50%></div>
+</li>
+<li>
+<p>How to connect to WiFi network？</p>
+<pre class="hljs"><code><div>/*Find available WiFi networks*/
+nmcli dev wifi list
+/*To connect to a WiFi network, you need to replace&lt;SSID&gt;with the network name you want to connect to, and&lt;password&gt;with the password for that network:*/
+nmcli --ask dev wifi connect &lt;SSID&gt; password &lt;password&gt; 
+</div></code></pre>
+</li>
+<li>
+<p>Unable to register for 4G network?</p>
+<p>Pay attention to the insertion direction of the SIM card as shown in the figure below, with the notch facing outward.</p>
+   <div align=center>  <img src=".\image\sim.png" width=50%></div>
+</li>
+<li>
+<p>How to Backup File System?<br>
+In the process of user development, after building their own application, it is usually necessary to back up the file system and then copy it to other machines. The following provides <a href="https://github.com/coolpi-george/backup/blob/main/backup-cp2b.sh">backup scripts</a> and operation methods:</p>
+<ul>
+<li>It is best to use a file system with a capacity greater than twice that of a USB flash drive, for example, if the file system is 4GB, choose an 8GB capacity USB flash drive and format it in NTFS format.</li>
+<li>Copy the script file to a USB drive.</li>
+<li>Insert the USB drive into the USB port of the CP1B machine and turn it on.</li>
+<li>Use the following command to mount a USB drive to the/mnt directory.<br>
+<code> sudo mount /dev/sda1 /mnt</code></li>
+<li>Enter the/mnt directory and execute the script.<pre class="hljs"><code><div>cd /mnt  
+sudo ./backup-cp2b.sh
+</div></code></pre>
+</li>
+<li>After the script is executed, the root directory of the USB drive will generate a * * *. img file, which can be used to replace the rootfs. img file in the compressed image file.</li>
+</ul>
+   <div align=center>  <img src=".\image\rootfs.jpg" width=50%></div>
+</li>
+<li>
+<p>How to make mass production firmware?<br>
+The mass production process can be completed using production tools, which require loading production firmware and cannot use development firmware. The following steps for generating production firmware are introduced:</p>
+<ul>
+<li>Open the folder shown in the following figure, double-click to execute mkupdate.bat, and the script will generate update.img after running</li>
+</ul>
+<div align=center>  <img src=".\image\update.jpg" width=50%></div>
+<div align=center>  <img src=".\image\123.jpg" width=50%></div>
+<ul>
+<li>Open the factory tool, load update.img, run, and the machine will automatically execute the burning process when it enters maskrom mode. It is recommended not to burn more than 16 machines simultaneously.</li>
+</ul>
+<div align=center>  <img src=".\image\factory.jpg" width=50%></div>
+</li>
+</ul>
+
+</body>
+</html>
