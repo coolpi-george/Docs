@@ -1,16 +1,16 @@
 # TM-CP3B Quick Start Guide
-<div align=center>  <img src=".\image\9.png" width=50%></div>
+<div align=center>  <img src=".\image\正面.jpg" width=50%></div>
 
 ## Login steps
 - Connect the power and plug in the network cable
-    -   The power supply range is 9V-36V, with the positive terminal near the HDMI end. <br>Note: Incorrect polarity can cause damage to the machine.
+    -   The power supply range is 9V-36V, with the positive terminal near the USB end. <br>Note: Incorrect polarity can cause damage to the machine.
         <div align=center>  <img src=".\image\power.png" width=40%></div>
 
     -   The default network connection method of the machine is DHCP to automatically obtain an IP address.<br> 
         After the network is connected normally, the two indicator lights on the network port will light up simultaneously.
 - Obtain the IP address of the machine<br>
     -   Use LAN IP address scanning software [Advanced_IP_Scanner](https://download.advanced-ip-scanner.com/download/files/Advanced_IP_Scanner_2.5.4594.1.exe) to obtain all scanned LAN IP addresses.
-    -   After downloading and installing the software, open the software and you will see the following interface. Click Scan to start scanning.The IP address corresponding to the "CP1B" device is the actual IP address of the machine.
+    -   After downloading and installing the software, open the software and you will see the following interface. Click Scan to start scanning.The IP address corresponding to the "CP3B" device is the actual IP address of the machine.
 
 
         <div align=center>  <img src=".\image\image-2.png" width=50%></div>
@@ -41,7 +41,7 @@
 
     -   The correspondence between ttySx device nodes and interfaces.
         
-        spi1  -- LORA WAN
+        spidev0.0 -- TBUS //Extended I/O Module Communication Interface
 
         ttyS1 -- RS485-1 (A1 B1)
 
@@ -83,58 +83,12 @@
         - The default 4G-LET module model currently used is EC20.
         <div align=center>  <img src=".\image\image-10.png" width=50%></div>
 
-    -   WIFI
-        - The default WIFI module model used by the machine is RTL8852BE, Supports WIFI6 and BT5.2 protocols. <br>
-        - The system has already integrated drivers and firmware by default, and can be used by plugging in the module.<br>
-        - Users can replace different WIFI modules according to their actual product needs, with M.2 (PCIe+USB) interface.
-        <div align=center>  <img src=".\image\wifi.png" width=50%></div>
+    -   WIFI/BT
+        - The default WIFI module model used by the machine is BL-M8800DU6-D80, which uses the AIC8800D80 chip. Support wifi 802.11a/b/g/n/ac/ax and bt5.4.<br>
+        - The system has already integrated drivers and firmware by default, and can be used by plugging in the module.  
 
-    -   LORA WAN
-        - CP3B supports LORA WAN modules with SPI interfaces, such as the EBYTE E106 series, as shown in the following figure, which defaults to using the MINI-PCIE interface.
-        - 
-        <div align=center>  <img src=".\image\e106.png" width=50%></div>
-        - Test according to the following steps.
+        <div align=center>  <img src=".\image\WIFI.png" width=50%></div>
 
-        ```
-        git clone https://github.com/coolpi-george/sx1302.git /*Clone code to any path on the CP3B*/
-        cd sx1302
-        make clean all
-        make -j8
-        cp tools/reset_lgw.sh util_chip_id/
-        cp tools/reset_lgw.sh packet_forwarder/
-        cp tools/reset_lgw.sh libloragw/
-        cd util_chip_id/
-        sudo ./chip_id                                       /*Obtain module EUI*/
-        [sudo] password for admin:  
-        CoreCell reset through GPIO36...
-        Opening SPI communication interface
-        Note: chip version is 0x10 (v1.0)
-        INFO: using legacy timestamp
-        ARB: dual demodulation disabled for all SF
-
-        INFO: concentrator EUI: 0x0016c001f11a1f85
-
-        Closing SPI communication interface
-        CoreCell reset through GPIO36...
-        cd libloragw/
-        sudo ./test_loragw_reg                             /*Traverse the registers of the module*/
-        CoreCell reset through GPIO36...
-        Opening SPI communication interface
-        Note: chip version is 0x10 (v1.0)
-        ## TEST#1: read all registers and check default value for non-read-only registers
-        ------------------
-         TEST#1 PASSED
-        ------------------
-
-        ## TEST#2: read/write test on all non-read-only, non-pulse, non-w0clr, non-w1clr registers
-        ------------------
-         TEST#2 PASSED                                    /*The successful identification module is running normally*/
-        ------------------
-
-        Closing SPI communication interface
-        CoreCell reset through GPIO36...
-        ```
-        - Configure as gateway and connect to TNN server according to [Official Documents](https://semtech.my.salesforce.com/sfc/p/#E0000000JelG/a/RQ0000043BUT/kDK2Unqnoazf9_UbC7um6mY7NnVzIWECoCudd3xuUnU).
     -   CAN
          - Implements CAN V2.0B at 1Mb/s.
          - Two receive buffers with prioritized message storage.
@@ -161,22 +115,26 @@
 
             candump can0 //Enable printing and wait for reception
             ```
+    -   Extended I/O
+    
+    -   Extended ADC
+
             
     
 ## Update the firmware
 - Download firmware and upgrade tools from [Google Drive](https://drive.google.com/drive/folders/1rpwDABPB5bxYspOhQ6YbhDFaWXRB4QgH?usp=sharing)or[Baidu Cloud](https://pan.baidu.com/s/1hJfx2A-HToroDK6UYPIOIQ?pwd=eut4) .
-<div align=center>  <img src=".\image\onedrive.png" width=50%></div>
+<div align=center>  <img src=".\image\download.png" width=50%></div>
 
 - Connect the USB port of CP3B to the computer.
   
-<div align=center>  <img src=".\image\otg.png" width=50%></div>
+<div align=center>  <img src=".\image\USB.png" width=50%></div>
   
 - Install USB driver using the DriveAssitant-v5.12 tool.
 
 <div align=center>  <img src=".\image\0001.png" width=50%></div>
 
 - Press and hold the REC button on the machine, then turn on the power and the machine will enter Loader mode.
-<div align=center>  <img src=".\image\REC.png" width=50%></div>
+<div align=center>  <img src=".\image\rec.png" width=50%></div>
 
 - Open RKDevTool tool, Switch from loader mode to maskrom mode as shown in the following figure.
     - Open the tool and discover the loader device.
@@ -188,7 +146,7 @@
     <div align=center>  <img src=".\image\maskrom.png" width=50%></div>
 
     - Check the option to force writing by address, click run, and wait for the burning to complete.
-    <div align=center>  <img src=".\image\download.png" width=50%></div>
+    <div align=center>  <img src=".\image\download1.png" width=50%></div>
 
 ## Compile and update the kernel
   - Synchronize kernel code and compile
