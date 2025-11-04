@@ -130,7 +130,6 @@
             |0x4b|write io command|
             |0x4c|write io bit command|
             |0x3a|read io command|
-            |0x3c|read io bit command|  
         -   Example  
             ```
             https://github.com/coolpi-george/spi-test.git  //Download test script
@@ -142,18 +141,16 @@
             ```
             - Write address  
               ``99 aa 01 00                                //Configure module address as 0x01,0xaa is default address  ``
-            - Write io
-              ``4b 01 ff 00                                //All 8 IO channels are turned on  ``
+            - Write io  
+              ``4b 01 ff 00                                //All 8 IO channels are turned on  ``  
               ``4b 01 00 00                                //All 8 IO channels are turned off  ``
-            - Write io bit
-              ``4c 01 01 01                                //Turn on the first bit of io, keep the other bits unchanged  ``
-              ``4c 01 02 01                                //Turn on the second bit of io, keep the other bits unchanged  ``
-              ``4c 01 02 00                                //Turn off the second bit of io, keep the other bits unchanged  ``
-            - Read io
-              ``3a 01 01 00                                //Read 8 IO channels command  ``
+            - Write io bit  
+              ``4c 01 01 01                                //Turn on the first bit of io, keep the other bits unchanged  ``  
+              ``4c 01 02 01                                //Turn on the second bit of io, keep the other bits unchanged  ``  
+              ``4c 01 02 00                                //Turn off the second bit of io, keep the other bits unchanged  ``  
+            - Read io  
+              ``3a 01 01 00                                //Read 8 IO channels command  ``  
               ``ff                                         //Get return value  ``
-            - Read io bit
-    
     -   Extended ADC
 
             
