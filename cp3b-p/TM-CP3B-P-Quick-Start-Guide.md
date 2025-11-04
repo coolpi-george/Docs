@@ -116,6 +116,43 @@
             candump can0 //Enable printing and wait for reception
             ```
     -   Extended I/O
+        -   Data Format
+            | CMD | ADDRESS | DATA0 | DATA1 |
+            |----|----|----|----|  
+        -   Communication Process
+            - Configure io module address,the default address for the IO module is 0xaa.
+            - Send Command  
+            - If it is a read command, obtain the return value
+        -   Command Word
+            | CMD | Instructions |
+            |----|----|
+            |0x99|write address command|
+            |0x4b|write io command|
+            |0x4c|write io bit command|
+            |0x3a|read io command|
+            |0x3c|read io bit command|  
+        -   Example  
+            ```
+            https://github.com/coolpi-george/spi-test.git  //Download test script
+            sudo apt install python3-pip                   
+            pip install spidev --break-system-packages     //Install spidev library
+            cd spi-test                                    //Enter the script directory     
+            python3 spidev_test.py                         //Execute script 
+            Please enter multiple hexadecimal numbers separated by spaces, or 'exit' to quit:   //Enter the command
+            ```
+            - Write address  
+              ``99 aa 01 00                                //Configure module address as 0x01,0xaa is default address  ``
+            - Write io
+              ``4b 01 ff 00                                //All 8 IO channels are turned on  ``
+              ``4b 01 00 00                                //All 8 IO channels are turned off  ``
+            - Write io bit
+              ``4c 01 01 01                                //Turn on the first bit of io, keep the other bits unchanged  ``
+              ``4c 01 02 01                                //Turn on the second bit of io, keep the other bits unchanged  ``
+              ``4c 01 02 00                                //Turn off the second bit of io, keep the other bits unchanged  ``
+            - Read io
+              ``3a 01 01 00                                //Read 8 IO channels command  ``
+              ``ff                                         //Get return value  ``
+            - Read io bit
     
     -   Extended ADC
 
