@@ -1,4 +1,4 @@
-# TM-CP3B Quick Start Guide
+# TM-CP3B-P Quick Start Guide
 <div align=center>  <img src=".\image\正面.jpg" width=50%></div>
 
 ## Login steps
