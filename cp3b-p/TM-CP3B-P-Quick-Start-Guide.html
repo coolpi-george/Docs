@@ -1,0 +1,789 @@
+<!DOCTYPE html>
+<html>
+<head>
+<title>TM-CP3B-P-Quick-Start-Guide.md</title>
+<meta http-equiv="Content-type" content="text/html;charset=UTF-8">
+
+<style>
+/* https://github.com/microsoft/vscode/blob/master/extensions/markdown-language-features/media/markdown.css */
+/*---------------------------------------------------------------------------------------------
+ *  Copyright (c) Microsoft Corporation. All rights reserved.
+ *  Licensed under the MIT License. See License.txt in the project root for license information.
+ *--------------------------------------------------------------------------------------------*/
+
+body {
+	font-family: var(--vscode-markdown-font-family, -apple-system, BlinkMacSystemFont, "Segoe WPC", "Segoe UI", "Ubuntu", "Droid Sans", sans-serif);
+	font-size: var(--vscode-markdown-font-size, 14px);
+	padding: 0 26px;
+	line-height: var(--vscode-markdown-line-height, 22px);
+	word-wrap: break-word;
+}
+
+#code-csp-warning {
+	position: fixed;
+	top: 0;
+	right: 0;
+	color: white;
+	margin: 16px;
+	text-align: center;
+	font-size: 12px;
+	font-family: sans-serif;
+	background-color:#444444;
+	cursor: pointer;
+	padding: 6px;
+	box-shadow: 1px 1px 1px rgba(0,0,0,.25);
+}
+
+#code-csp-warning:hover {
+	text-decoration: none;
+	background-color:#007acc;
+	box-shadow: 2px 2px 2px rgba(0,0,0,.25);
+}
+
+body.scrollBeyondLastLine {
+	margin-bottom: calc(100vh - 22px);
+}
+
+body.showEditorSelection .code-line {
+	position: relative;
+}
+
+body.showEditorSelection .code-active-line:before,
+body.showEditorSelection .code-line:hover:before {
+	content: "";
+	display: block;
+	position: absolute;
+	top: 0;
+	left: -12px;
+	height: 100%;
+}
+
+body.showEditorSelection li.code-active-line:before,
+body.showEditorSelection li.code-line:hover:before {
+	left: -30px;
+}
+
+.vscode-light.showEditorSelection .code-active-line:before {
+	border-left: 3px solid rgba(0, 0, 0, 0.15);
+}
+
+.vscode-light.showEditorSelection .code-line:hover:before {
+	border-left: 3px solid rgba(0, 0, 0, 0.40);
+}
+
+.vscode-light.showEditorSelection .code-line .code-line:hover:before {
+	border-left: none;
+}
+
+.vscode-dark.showEditorSelection .code-active-line:before {
+	border-left: 3px solid rgba(255, 255, 255, 0.4);
+}
+
+.vscode-dark.showEditorSelection .code-line:hover:before {
+	border-left: 3px solid rgba(255, 255, 255, 0.60);
+}
+
+.vscode-dark.showEditorSelection .code-line .code-line:hover:before {
+	border-left: none;
+}
+
+.vscode-high-contrast.showEditorSelection .code-active-line:before {
+	border-left: 3px solid rgba(255, 160, 0, 0.7);
+}
+
+.vscode-high-contrast.showEditorSelection .code-line:hover:before {
+	border-left: 3px solid rgba(255, 160, 0, 1);
+}
+
+.vscode-high-contrast.showEditorSelection .code-line .code-line:hover:before {
+	border-left: none;
+}
+
+img {
+	max-width: 100%;
+	max-height: 100%;
+}
+
+a {
+	text-decoration: none;
+}
+
+a:hover {
+	text-decoration: underline;
+}
+
+a:focus,
+input:focus,
+select:focus,
+textarea:focus {
+	outline: 1px solid -webkit-focus-ring-color;
+	outline-offset: -1px;
+}
+
+hr {
+	border: 0;
+	height: 2px;
+	border-bottom: 2px solid;
+}
+
+h1 {
+	padding-bottom: 0.3em;
+	line-height: 1.2;
+	border-bottom-width: 1px;
+	border-bottom-style: solid;
+}
+
+h1, h2, h3 {
+	font-weight: normal;
+}
+
+table {
+	border-collapse: collapse;
+}
+
+table > thead > tr > th {
+	text-align: left;
+	border-bottom: 1px solid;
+}
+
+table > thead > tr > th,
+table > thead > tr > td,
+table > tbody > tr > th,
+table > tbody > tr > td {
+	padding: 5px 10px;
+}
+
+table > tbody > tr + tr > td {
+	border-top: 1px solid;
+}
+
+blockquote {
+	margin: 0 7px 0 5px;
+	padding: 0 16px 0 10px;
+	border-left-width: 5px;
+	border-left-style: solid;
+}
+
+code {
+	font-family: Menlo, Monaco, Consolas, "Droid Sans Mono", "Courier New", monospace, "Droid Sans Fallback";
+	font-size: 1em;
+	line-height: 1.357em;
+}
+
+body.wordWrap pre {
+	white-space: pre-wrap;
+}
+
+pre:not(.hljs),
+pre.hljs code > div {
+	padding: 16px;
+	border-radius: 3px;
+	overflow: auto;
+}
+
+pre code {
+	color: var(--vscode-editor-foreground);
+	tab-size: 4;
+}
+
+/** Theming */
+
+.vscode-light pre {
+	background-color: rgba(220, 220, 220, 0.4);
+}
+
+.vscode-dark pre {
+	background-color: rgba(10, 10, 10, 0.4);
+}
+
+.vscode-high-contrast pre {
+	background-color: rgb(0, 0, 0);
+}
+
+.vscode-high-contrast h1 {
+	border-color: rgb(0, 0, 0);
+}
+
+.vscode-light table > thead > tr > th {
+	border-color: rgba(0, 0, 0, 0.69);
+}
+
+.vscode-dark table > thead > tr > th {
+	border-color: rgba(255, 255, 255, 0.69);
+}
+
+.vscode-light h1,
+.vscode-light hr,
+.vscode-light table > tbody > tr + tr > td {
+	border-color: rgba(0, 0, 0, 0.18);
+}
+
+.vscode-dark h1,
+.vscode-dark hr,
+.vscode-dark table > tbody > tr + tr > td {
+	border-color: rgba(255, 255, 255, 0.18);
+}
+
+</style>
+
+<style>
+/* Tomorrow Theme */
+/* http://jmblog.github.com/color-themes-for-google-code-highlightjs */
+/* Original theme - https://github.com/chriskempson/tomorrow-theme */
+
+/* Tomorrow Comment */
+.hljs-comment,
+.hljs-quote {
+	color: #8e908c;
+}
+
+/* Tomorrow Red */
+.hljs-variable,
+.hljs-template-variable,
+.hljs-tag,
+.hljs-name,
+.hljs-selector-id,
+.hljs-selector-class,
+.hljs-regexp,
+.hljs-deletion {
+	color: #c82829;
+}
+
+/* Tomorrow Orange */
+.hljs-number,
+.hljs-built_in,
+.hljs-builtin-name,
+.hljs-literal,
+.hljs-type,
+.hljs-params,
+.hljs-meta,
+.hljs-link {
+	color: #f5871f;
+}
+
+/* Tomorrow Yellow */
+.hljs-attribute {
+	color: #eab700;
+}
+
+/* Tomorrow Green */
+.hljs-string,
+.hljs-symbol,
+.hljs-bullet,
+.hljs-addition {
+	color: #718c00;
+}
+
+/* Tomorrow Blue */
+.hljs-title,
+.hljs-section {
+	color: #4271ae;
+}
+
+/* Tomorrow Purple */
+.hljs-keyword,
+.hljs-selector-tag {
+	color: #8959a8;
+}
+
+.hljs {
+	display: block;
+	overflow-x: auto;
+	color: #4d4d4c;
+	padding: 0.5em;
+}
+
+.hljs-emphasis {
+	font-style: italic;
+}
+
+.hljs-strong {
+	font-weight: bold;
+}
+</style>
+
+<style>
+/*
+ * Markdown PDF CSS
+ */
+
+ body {
+	font-family: -apple-system, BlinkMacSystemFont, "Segoe WPC", "Segoe UI", "Ubuntu", "Droid Sans", sans-serif, "Meiryo";
+	padding: 0 12px;
+}
+
+pre {
+	background-color: #f8f8f8;
+	border: 1px solid #cccccc;
+	border-radius: 3px;
+	overflow-x: auto;
+	white-space: pre-wrap;
+	overflow-wrap: break-word;
+}
+
+pre:not(.hljs) {
+	padding: 23px;
+	line-height: 19px;
+}
+
+blockquote {
+	background: rgba(127, 127, 127, 0.1);
+	border-color: rgba(0, 122, 204, 0.5);
+}
+
+.emoji {
+	height: 1.4em;
+}
+
+code {
+	font-size: 14px;
+	line-height: 19px;
+}
+
+/* for inline code */
+:not(pre):not(.hljs) > code {
+	color: #C9AE75; /* Change the old color so it seems less like an error */
+	font-size: inherit;
+}
+
+/* Page Break : use <div class="page"/> to insert page break
+-------------------------------------------------------- */
+.page {
+	page-break-after: always;
+}
+
+</style>
+
+<script src="https://unpkg.com/mermaid/dist/mermaid.min.js"></script>
+</head>
+<body>
+  <script>
+    mermaid.initialize({
+      startOnLoad: true,
+      theme: document.body.classList.contains('vscode-dark') || document.body.classList.contains('vscode-high-contrast')
+          ? 'dark'
+          : 'default'
+    });
+  </script>
+<h1 id="tm-cp3b-p-quick-start-guide">TM-CP3B-P Quick Start Guide</h1>
+<div align=center>  <img src=".\image\正面.jpg" width=50%></div>
+<h2 id="login-steps">Login steps</h2>
+<ul>
+<li>
+<p>Connect the power and plug in the network cable</p>
+<ul>
+<li>
+<p>The power supply range is 9V-36V, with the positive terminal near the USB end. <br>Note: Incorrect polarity can cause damage to the machine.</p>
+<div align=center>  <img src=".\image\power.png" width=40%></div>
+</li>
+<li>
+<p>The default network connection method of the machine is DHCP to automatically obtain an IP address.<br>
+After the network is connected normally, the two indicator lights on the network port will light up simultaneously.</p>
+</li>
+</ul>
+</li>
+<li>
+<p>Obtain the IP address of the machine<br></p>
+<ul>
+<li>
+<p>Use LAN IP address scanning software <a href="https://download.advanced-ip-scanner.com/download/files/Advanced_IP_Scanner_2.5.4594.1.exe">Advanced_IP_Scanner</a> to obtain all scanned LAN IP addresses.</p>
+</li>
+<li>
+<p>After downloading and installing the software, open the software and you will see the following interface. Click Scan to start scanning.The IP address corresponding to the &quot;CP3B&quot; device is the actual IP address of the machine.</p>
+<div align=center>  <img src=".\image\image-2.png" width=50%></div>
+</li>
+<li>
+<p>The machine with the device name CP3B in the scanning results corresponds to the DHCP address of the machine.</p>
+</li>
+</ul>
+</li>
+<li>
+<p>Login device<br></p>
+<ul>
+<li>
+<p>Enter the following link in the browser to enter the login interface:<br>
+https://your_ipaddress:9090/<br></p>
+</li>
+<li>
+<p>Replace &quot;your_ipaddress&quot; with the actual IP address of the machine. such as &quot;https://172.16.19.111:9090&quot;.<br></p>
+<div align=center>  <img src=".\image\image-5.png" width=50%></div>
+</li>
+<li>
+<p>Enter your username and password, then click login.<br> The default username for the machine is &quot;admin&quot;, and the password is &quot;admin&quot;.</p>
+<div align=center>  <img src=".\image\image-6.png" width=50%></div>
+</li>
+<li>
+<p>Click on the terminal to enter the shell interface, where you can update various devices of the system or operating system.</p>
+<div align=center>  <img src=".\image\image-8.png" width=50%></div>
+</li>
+<li>
+<p>You can also log in using the console interface</p>
+<div align=center>  <img src=".\image\console.png" width=50%></div>   
+</li>
+<li>
+<p>The console is a USB to serial chip CH340, and the driver needs to be <a href="https://www.wch.cn/download/file?id=65">Download</a> and installed before use.</p>
+</li>
+<li>
+<p>The default baud rate for console serial port is 115200.</p>
+</li>
+</ul>
+</li>
+</ul>
+<h2 id="interface-operation">Interface operation</h2>
+<ul>
+<li>
+<p>Interface</p>
+ <div align=center>  <img src=".\image\port.png" width=50%></div>
+<ul>
+<li>
+<p>The correspondence between ttySx device nodes and interfaces.</p>
+<p>spidev0.0 -- TBUS //Extended I/O Module Communication Interface</p>
+<p>ttyS1 -- RS485-1 (A1 B1)</p>
+<p>ttyS7 -- RS485-2 (A2 B2)</p>
+<p>ttyS9 -- RS485-3 (A3 B3)</p>
+<p>ttyS5 -- RS232   (T1 R1)</p>
+<p>ttyS3 -- UART-TTL(5V) (IO0 IO1) //These two pins can be configured for UART(default) 、GPIO and I2C functions.</p>
+<p>ttyUSB0-ttyUSB3 -- 4G-LTE</p>
+</li>
+<li>
+<p>RS485&amp;RS232</p>
+<pre class="hljs"><code><div>stty -F /dev/ttyS1 raw speed 115200 //Configure RS485 baud rate to 115200
+echo &quot;hello world&quot; &gt; /dev/ttyS1     //Send &quot;hello world&quot; to RS485 port
+</div></code></pre>
+<ul>
+<li>You can also operate the serial port through C or Python.</li>
+</ul>
+</li>
+<li>
+<p>4G-LTE</p>
+<ul>
+<li>The dialing script is located in the following directory:<pre class="hljs"><code><div>/etc/ppp/quectel-pppd.sh
+</div></code></pre>
+</li>
+<li>Operators in different regions need to configure APN, username, and password, which can be directly modified in the following location in the dialing script:</li>
+</ul>
+<div align=center>  <img src=".\image\ppp.png" width=50%></div>
+<ul>
+<li>
+<p>You can obtain APN ，username and password from different operators through the following connections.</p>
+<p><a href="https://bigfun.tripod.co.uk/">https://bigfun.tripod.co.uk/</a></p>
+</li>
+<li>
+<p>Inserting the 4G module and SIM card,Correctly configure APN username and password, the machine will automatically complete the dialing operation after booting up.</p>
+</li>
+<li>
+<p>After successful dialing, the system will display the following ppp0 network nodes.</p>
+</li>
+<li>
+<p>The default 4G-LET module model currently used is EC20.</p>
+</li>
+</ul>
+<div align=center>  <img src=".\image\image-10.png" width=50%></div>
+</li>
+<li>
+<p>WIFI/BT</p>
+<ul>
+<li>The default WIFI module model used by the machine is BL-M8800DU6-D80, which uses the AIC8800D80 chip. Support wifi 802.11a/b/g/n/ac/ax and bt5.4.<br></li>
+<li>The system has already integrated drivers and firmware by default, and can be used by plugging in the module.</li>
+</ul>
+<div align=center>  <img src=".\image\WIFI.png" width=50%></div>
+</li>
+<li>
+<p>CAN</p>
+<ul>
+<li>Implements CAN V2.0B at 1Mb/s.</li>
+<li>Two receive buffers with prioritized message storage.</li>
+<li>Three Transmit Buffers with Prioritization and Abort Features.</li>
+<li>How to operate?<pre class="hljs"><code><div>ifconfig -a   //Query current network devices
+
+ip link set can0 down  //Close CAN0
+
+ip link set can0 type can bitrate 500000  //Set bit rate to 500KHz
+
+ip -details -statistics link show can0   //Print can0 information
+
+ip link set can0 up  //Activate CAN0
+
+cansend can0 123#DEADBEEF  //Send (standard frame, data frame, ID: 123, data: DEADBEEF)
+
+cansend can0 123#R  //Send (standard frame, remote frame, ID: 123)
+
+cansend can0 00000123#12345678  //Send (Extended frame, Data frame, ID: 00000 123, data: 12345678):
+
+cansend can0 00000123#R //Send (Extended Frame, Remote Frame, ID: 00000 123)
+
+candump can0 //Enable printing and wait for reception
+</div></code></pre>
+</li>
+</ul>
+</li>
+<li>
+<p>Extended I/O</p>
+<div align=center>  <img src=".\image\CP20-0808ETN.PNG" width=50%></div>
+<ul>
+<li>Data Format
+<table>
+<thead>
+<tr>
+<th>CMD</th>
+<th>ADDRESS</th>
+<th>DATA0</th>
+<th>DATA1</th>
+</tr>
+</thead>
+<tbody></tbody>
+</table>
+</li>
+<li>Communication Process
+<ul>
+<li>Configure io module address,the default address for the IO module is 0xaa.</li>
+<li>Send Command</li>
+<li>If it is a read command, obtain the return value</li>
+</ul>
+</li>
+<li>Command Word
+<table>
+<thead>
+<tr>
+<th>CMD</th>
+<th>Instructions</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>0x99</td>
+<td>write address command</td>
+</tr>
+<tr>
+<td>0x4b</td>
+<td>write io command</td>
+</tr>
+<tr>
+<td>0x4c</td>
+<td>write io bit command</td>
+</tr>
+<tr>
+<td>0x3a</td>
+<td>read io command</td>
+</tr>
+</tbody>
+</table>
+</li>
+<li>Example<pre class="hljs"><code><div>https://github.com/coolpi-george/spi-test.git  //Download test script
+sudo apt install python3-pip                   
+pip install spidev --break-system-packages     //Install spidev library
+cd spi-test                                    //Enter the script directory     
+python3 spidev_test.py                         //Execute script 
+Please enter multiple hexadecimal numbers separated by spaces, or 'exit' to quit:   //Enter the command
+</div></code></pre>
+<ul>
+<li>Write address<br>
+<code>99 aa 01 00                                //Configure module address as 0x01,0xaa is default address  </code></li>
+<li>Write io<br>
+<code>4b 01 ff 00                                //All 8 IO channels are turned on  </code><br>
+<code>4b 01 00 00                                //All 8 IO channels are turned off  </code></li>
+<li>Write io bit<br>
+<code>4c 01 01 01                                //Turn on the first bit of io, keep the other bits unchanged  </code><br>
+<code>4c 01 02 01                                //Turn on the second bit of io, keep the other bits unchanged  </code><br>
+<code>4c 01 02 00                                //Turn off the second bit of io, keep the other bits unchanged  </code></li>
+<li>Read io<br>
+<code>3a 01 01 00                                //Read 8 IO channels command  </code><br>
+<code>ff                                         //Get return value  </code></li>
+</ul>
+</li>
+</ul>
+</li>
+<li>
+<p>Extended ADC</p>
+<div align=center>  <img src=".\image\CP20-4AD2DA.jpg" width=50%></div>
+<ul>
+<li>
+<p>The ADC input range is -10V to -10V, corresponding to ADC values ranging from 0 to 4095. The ADC accuracy is 12 bits.</p>
+</li>
+<li>
+<p>The output voltage range of DAC is 0V-10V, corresponding to a configuration value of 0-1000, with an accuracy of 0.01V and an output driving capability of 5ma.</p>
+</li>
+<li>
+<p>Data Format</p>
+<table>
+<thead>
+<tr>
+<th>CMD</th>
+<th>ADDRESS</th>
+<th>DATA0</th>
+<th>DATA1</th>
+</tr>
+</thead>
+<tbody></tbody>
+</table>
+</li>
+<li>
+<p>Communication Process</p>
+<ul>
+<li>Configure io module address,the default address for the IO module is 0xaa.</li>
+<li>Send Command</li>
+<li>If it is a read command, obtain the return value</li>
+</ul>
+</li>
+<li>
+<p>Command Word</p>
+<table>
+<thead>
+<tr>
+<th>CMD</th>
+<th>Instructions</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>0x99</td>
+<td>write address command</td>
+</tr>
+<tr>
+<td>0x41</td>
+<td>read AD fixed channel command</td>
+</tr>
+<tr>
+<td>0x42</td>
+<td>read all channel commands of AD</td>
+</tr>
+<tr>
+<td>0x43</td>
+<td>write fixed channel DA value</td>
+</tr>
+</tbody>
+</table>
+</li>
+<li>
+<p>Example</p>
+<pre class="hljs"><code><div>https://github.com/coolpi-george/spi-test.git  //Download test script
+sudo apt install python3-pip                   
+pip install spidev --break-system-packages     //Install spidev library
+cd spi-test                                    //Enter the script directory     
+python3 spidev_test.py                         //Execute script 
+Please enter multiple hexadecimal numbers separated by spaces, or 'exit' to quit:   //Enter the command
+</div></code></pre>
+<ul>
+<li>Write address<br>
+<code>99 aa 03 00                                //Configure module address as 0x01,0xaa is default address  </code></li>
+<li>Read ADC channel 1 value<br>
+<code>41 03 02 01                                //Read the ADC value of the 0x01 channel of the 0X03 module with a length of 2 bytes.  </code><br>
+<code>ff ff                                     //Get a value of 2 bytes. ADC1L ADC1H</code></li>
+<li>Read ADC all channel  value<br>
+<code>42 03 08 00                                //Read the ADC value of the 0x01 channel of the 0X03 module with a length of 8 bytes.  </code><br>
+<code>ff ff ff ff ff ff ff ff                    //Get a value of 8 bytes. ADC1L ADC1H ADC2L ADC2H ADC3L ADC3H ADC4L ADC4H  </code></li>
+<li>Write fixed channel DA value (The output range of the module is 0V-10V, and the corresponding DA setting value is 0-1000)<br>
+<code>43 03 13 E8                                //The top 4 bits of the 3 byte of the command packet are the channel number, the bottom 4 bits, and the 4 byte are the values output by the DAC.  </code></li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+<h2 id="update-the-firmware">Update the firmware</h2>
+<ul>
+<li>Download firmware and upgrade tools from <a href="https://drive.google.com/drive/folders/1rpwDABPB5bxYspOhQ6YbhDFaWXRB4QgH?usp=sharing">Google Drive</a>or<a href="https://pan.baidu.com/s/1hJfx2A-HToroDK6UYPIOIQ?pwd=eut4">Baidu Cloud</a> .</li>
+</ul>
+<div align=center>  <img src=".\image\download.png" width=50%></div>
+<ul>
+<li>Connect the USB port of CP3B to the computer.</li>
+</ul>
+<div align=center>  <img src=".\image\USB.png" width=50%></div>
+<ul>
+<li>Install USB driver using the DriveAssitant-v5.12 tool.</li>
+</ul>
+<div align=center>  <img src=".\image\0001.png" width=50%></div>
+<ul>
+<li>Press and hold the REC button on the machine, then turn on the power and the machine will enter Loader mode.</li>
+</ul>
+<div align=center>  <img src=".\image\rec.png" width=50%></div>
+<ul>
+<li>
+<p>Open RKDevTool tool, Switch from loader mode to maskrom mode as shown in the following figure.</p>
+<ul>
+<li>Open the tool and discover the loader device.</li>
+</ul>
+  <div align=center>  <img src=".\image\loader.png" width=50%></div>
+<ul>
+<li>Switch to Maskrom mode according to the following diagram.</li>
+</ul>
+  <div align=center>  <img src=".\image\maskrom.png" width=50%></div>
+<ul>
+<li>Check the option to force writing by address, click run, and wait for the burning to complete.</li>
+</ul>
+  <div align=center>  <img src=".\image\download1.png" width=50%></div>
+</li>
+</ul>
+<h2 id="compile-and-update-the-kernel">Compile and update the kernel</h2>
+<ul>
+<li>
+<p>Synchronize kernel code and compile</p>
+<pre class="hljs"><code><div>git clone https://github.com/coolpi-george/coolpi-kernel.git
+git checkout linux-6.1-stan-rkr3.1
+./build-kernel.sh arm64
+</div></code></pre>
+</li>
+<li>
+<p>update kernel</p>
+<p>After compilation, the following deb file will be generated and copied to the machine for installation using the &quot;dpkg -i linux-image-6.1.75_6.1.75-23_arm64.deb&quot; command.</p>
+</li>
+</ul>
+<h2 id="common-problems-and-solutions">Common problems and solutions</h2>
+<ul>
+<li>
+<p>How to change default password？</p>
+<pre class="hljs"><code><div>sudo passwd admin
+</div></code></pre>
+</li>
+<li>
+<p>How to add a new user?
+As shown in the following figure, new users can be added and permissions can be configured through the backend management software.</p>
+   <div align=center>  <img src=".\image\image-9.png" width=50%></div>
+</li>
+<li>
+<p>How to connect to WiFi network？</p>
+<pre class="hljs"><code><div>/*Find available WiFi networks*/
+nmcli dev wifi list
+/*To connect to a WiFi network, you need to replace&lt;SSID&gt;with the network name you want to connect to, and&lt;password&gt;with the password for that network:*/
+nmcli --ask dev wifi connect &lt;SSID&gt; password &lt;password&gt; 
+</div></code></pre>
+</li>
+<li>
+<p>Unable to register for 4G network?</p>
+<p>Pay attention to the insertion direction of the SIM card as shown in the figure below, with the notch facing outward.</p>
+   <div align=center>  <img src=".\image\sim.png" width=50%></div>
+</li>
+<li>
+<p>How to modify the startup image?</p>
+<ul>
+<li>Modify the content of the attached image and copy it to the /boot/firmware directory of the machine.</li>
+<li>Be sure not to change the file name and format (BMP).</li>
+</ul>
+   <div align=center>  <img src=".\image\logo.bmp" width=50%></div>
+   <div align=center>  <img src=".\image\logo_kernel.bmp" width=50%></div>
+</li>
+<li>
+<p>How to backup an image?</p>
+<ul>
+<li>
+<p>Copy the script shown in the figure to a USB drive, insert the USB drive into the machine, and then execute the script with administrator privileges in the background, waiting for the backup to complete.</p>
+</li>
+<li>
+<p>Note that the space on the USB flash drive must be greater than twice the size of the machine's root partition.</p>
+</li>
+<li>
+<p>Replace the Ubuntu * * *. img file in the Image directory of the burning tool with the generated image, and burn it for testing on a new machine.</p>
+<p><a href="https://forum.cool-pi.com/assets/uploads/files/1751280412284-dump-emmc.sh">Dump-emmc</a></p>
+</li>
+</ul>
+</li>
+<li>
+<p>How to install Docker?
+Refer to the following document to install Docker.</p>
+<p>https://forum.cool-pi.com/topic/1276/install-docker-engine-on-ubuntu</p>
+</li>
+</ul>
+
+</body>
+</html>

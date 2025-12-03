@@ -116,6 +116,8 @@
             candump can0 //Enable printing and wait for reception
             ```
     -   Extended I/O
+        <div align=center>  <img src=".\image\CP20-0808ETN.PNG" width=50%></div>
+
         -   Data Format
             | CMD | ADDRESS | DATA0 | DATA1 |
             |----|----|----|----|  
@@ -152,9 +154,44 @@
               ``3a 01 01 00                                //Read 8 IO channels command  ``  
               ``ff                                         //Get return value  ``
     -   Extended ADC
+        <div align=center>  <img src=".\image\CP20-4AD2DA.jpg" width=50%></div>
 
-            
-    
+        -   The ADC input range is -10V to -10V, corresponding to ADC values ranging from 0 to 4095. The ADC accuracy is 12 bits.
+        -   The output voltage range of DAC is 0V-10V, corresponding to a configuration value of 0-1000, with an accuracy of 0.01V and an output driving capability of 5ma.    
+
+        -   Data Format
+            | CMD | ADDRESS | DATA0 | DATA1 |
+            |----|----|----|----|  
+        -   Communication Process
+            - Configure io module address,the default address for the IO module is 0xaa.
+            - Send Command  
+            - If it is a read command, obtain the return value
+        -   Command Word
+            | CMD | Instructions |
+            |----|----|
+            |0x99|write address command|
+            |0x41|read AD fixed channel command|
+            |0x42|read all channel commands of AD|
+            |0x43|write fixed channel DA value|
+        -   Example              
+            ```
+            https://github.com/coolpi-george/spi-test.git  //Download test script
+            sudo apt install python3-pip                   
+            pip install spidev --break-system-packages     //Install spidev library
+            cd spi-test                                    //Enter the script directory     
+            python3 spidev_test.py                         //Execute script 
+            Please enter multiple hexadecimal numbers separated by spaces, or 'exit' to quit:   //Enter the command
+            ```
+            - Write address    
+              ``99 aa 03 00                                //Configure module address as 0x01,0xaa is default address  ``
+            - Read ADC channel 1 value  
+              ``41 03 02 01                                //Read the ADC value of the 0x01 channel of the 0X03 module with a length of 2 bytes.  ``  
+              ``ff ff                                     //Get a value of 2 bytes. ADC1L ADC1H``  
+            - Read ADC all channel  value  
+              ``42 03 08 00                                //Read the ADC value of the 0x01 channel of the 0X03 module with a length of 8 bytes.  ``  
+              ``ff ff ff ff ff ff ff ff                    //Get a value of 8 bytes. ADC1L ADC1H ADC2L ADC2H ADC3L ADC3H ADC4L ADC4H  ``  
+            - Write fixed channel DA value (The output range of the module is 0V-10V, and the corresponding DA setting value is 0-1000)  
+              ``43 03 13 E8                                //The top 4 bits of the 3 byte of the command packet are the channel number, the bottom 4 bits, and the 4 byte are the values output by the DAC.  ``           
 ## Update the firmware
 - Download firmware and upgrade tools from [Google Drive](https://drive.google.com/drive/folders/1rpwDABPB5bxYspOhQ6YbhDFaWXRB4QgH?usp=sharing)or[Baidu Cloud](https://pan.baidu.com/s/1hJfx2A-HToroDK6UYPIOIQ?pwd=eut4) .
 <div align=center>  <img src=".\image\download.png" width=50%></div>
