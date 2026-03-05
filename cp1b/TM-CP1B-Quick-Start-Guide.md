@@ -198,9 +198,12 @@
     The mass production process can be completed using production tools, which require loading production firmware and cannot use development firmware. The following steps for generating production firmware are introduced:  
        - Open the SocToolKit software and select the chip model and storage type as shown in the following figure.    
     <div align=center>  <img src=".\image\update-1.png" width=50%></div>
+
        - Right click on the watch to add files.
     <div align=center>  <img src=".\image\update-2.png" width=50%></div>
+
        - Select 6 files and click Create, wait for the creation to complete.
+       
     <div align=center>  <img src=".\image\update-3.png" width=50%></div>
 
 
