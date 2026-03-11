@@ -57,6 +57,17 @@
         echo "hello world" > /dev/ttyS1     //Send "hello world" to RS485 port
         ```
         You can also operate the serial port through C or Python.
+    -   CANFD
+        ```
+        ifconfig -a                                                        //Check the device node
+        ip link set can0 down                                              //Disable CAN0
+        ip link set can0 type can bitrate 1000000 dbitrate 3000000 fd on   //Set the arbitration segment to 1M baud rate and the data segment to 3M baud rate
+        ip -details link show can0                                         //Print CAN0 configuration information
+        ip link set can0 up                                                //Start the CAN controller
+        cansend can0 123##1DEADBEEF                                        //Send (standard frame, data frame, ID: 123, date: DEADBEEF)
+        cansend can0 00000123##1DEADBEEF                                   //Send (Extended frame, Data frame, ID: 00000 123, date: DEADBEEF)
+        candump can0 &                                                     //CAN reception, enable printing, wait for reception
+        ```
     -   4G-LTE 
 
         After inserting the 4G module and SIM card, the machine will automatically complete the dialing operation after booting up. 
