@@ -32,7 +32,7 @@
         ```
         sudo apt install ssh
         ```
-        The machine integrates a USB to UART circuit internally, and uses a Type-C cable to connect the console interface to the computer. The computer will detect a serial device, and if it is used for the first time, a [USB driver](https://www.wch.cn/download/file?id=65) is required.
+        The machine integrates a USB to UART circuit internally, and uses a Type-C cable to connect the console interface to the computer. The computer will detect a serial device, and if it is used for the first time, a [USB driver](https://file.wch.cn/download/file?id=5) is required.
 
 ## Interface operation
 - Interface
@@ -53,12 +53,13 @@
     -   RS485&TTL
 
         ```
-        stty -F /dev/ttyS1 raw speed 115200 //Configure RS485 baud rate to 115200
-        echo "hello world" > /dev/ttyS1     //Send "hello world" to RS485 port
+        stty -F /dev/ttyS1 raw speed 115200                                //Configure RS485 baud rate to 115200
+        echo "hello world" > /dev/ttyS1                                    //Send "hello world" to RS485 port
         ```
         You can also operate the serial port through C or Python.
     -   CANFD
         ```
+        sudo apt install can-utils                                         //Install the CAN test tool
         ifconfig -a                                                        //Check the device node
         ip link set can0 down                                              //Disable CAN0
         ip link set can0 type can bitrate 1000000 dbitrate 3000000 fd on   //Set the arbitration segment to 1M baud rate and the data segment to 3M baud rate
@@ -76,6 +77,9 @@
 
         The default 4G-LET module model currently used is EC20.
         <div align=center>  <img src=".\image\4G.png" width=50%></div>
+
+        The insertion direction of Nano-SIM card is as follows
+        
 
     -   WIFI&BT
 
