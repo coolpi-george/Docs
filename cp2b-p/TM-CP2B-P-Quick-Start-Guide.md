@@ -2,10 +2,10 @@
 <div align=center>  <img src=".\image\001.png" width=50%></div>
 
 ## Login steps
-- The Console interface is connected to the computer through a USB-Typec cable, and the computer will recognize one serial device. The integrated USB to serial chip model inside the machine is CH340, and the [USB driver](https://file.wch.cn/download/file?id=5) needs to be installed before use. The default baud rate for the serial port is 115200.Username: "admin" Password: "admin".
+- The console interface is connected to the computer through a USB-Typec cable, and the computer will recognize one serial device. The integrated USB to serial chip model inside the machine is CH340, and the [USB driver](https://file.wch.cn/download/file?id=5) needs to be installed before use. The default baud rate for the serial port is 115200.Username: "admin" Password: "admin".
 <div align=center>  <img src=".\image\002.png" width=50%></div>
 
-- You can also log in to the device through a browser. The machine has a built-in cockpit backend by default. Enter https://your IP address:9090 to enter the following login interface. Username: "admin" Password: "admin".  
+- You can also log in to the device through a browser. The machine has a built-in cockpit backend by default. Enter https://your-ip-address:9090 to enter the following login interface. Username: "admin" Password: "admin".  
 <div align=center>  <img src=".\image\logic.jpg" width=50%></div>
 
 ## Interface operation
@@ -22,7 +22,7 @@
 
         ttyS4 -- LORA
 
-        spidev0.0 -- LORA-WAN
+        spidev0.0 -- LORAWAN
 
         ttyUSB0-ttyUSB3 -- 4G-LTE
 
@@ -30,7 +30,7 @@
 
         ```
         stty -F /dev/ttyS1 raw speed 115200                                //Configure RS485 baud rate to 115200
-        echo "hello world" > /dev/ttyS1                                    //Send "hello world" to RS485 port
+        echo "hello world" >/dev/ttyS1                                    //Send "hello world" to RS485 port
         ```
         You can also operate the serial port through C or Python.
     -   CANFD
@@ -237,8 +237,136 @@
   - update kernel
   
     After compilation, the following deb file will be generated and copied to the machine for installation using the "dpkg -i linux-image-6.1.115_6.1.115-21_armhf.deb" command. 
-    <div align=center>  <img src=".\image\DEB.jpg" width=50%></div>     
+    <div align=center>  <img src=".\image\DEB.jpg" width=50%></div>   
 
+## Install NodeRed
+
+-   Run the following command to install node_red
+
+    ```
+    sudo apt update
+    sudo apt install curl
+    curl -fsSL https://deb.nodesource.com/setup_21.x | sudo -E bash -
+    sudo apt-get install -y nodejs
+    sudo npm install -g --unsafe-perm node-red
+    ```
+-   Set up startup upon startup
+    ```
+    sudo vim /etc/systemd/system/node-red.service
+    ```
+    Add the following content
+    ```
+    [Unit]
+    Description=Node-RED
+    After=network.target
+
+    [Service]
+    ExecStart=/usr/bin/node /usr/bin/node-red
+    User=admin
+
+    [Install]
+    WantedBy=multi-user.target
+    ```
+    Start the service and set up startup, check the service status.
+    ```
+    sudo systemctl daemon-reload
+    sudo systemctl start node-red
+    sudo systemctl enable node-red
+    sudo systemctl status node-red
+    ```
+-   Set Password  
+    Generate username and password, using admin as an example here
+    ```
+    admin@cp2b:~$ node-red admin hash-pw
+    Password: $2y$08$cUm1LgtBnDt.b.az4IiLeuPCNb0LFv.hbnd71OWwd94j.GMF/WVnW
+    ```
+    Open the settings. js file, modify the content of adminAuth, and copy the string from earlier. Save and exit.
+    ```
+    vim /home/admin/.node-red/settings.js
+
+    /*******************************************************************************
+     * Security
+     *  - adminAuth
+     *  - https
+     *  - httpsRefreshInterval
+     *  - requireHttps
+     *  - httpNodeAuth
+     *  - httpStaticAuth
+    ******************************************************************************/
+ 
+    /** To password protect the Node-RED editor and admin API, the following
+     * property can be used. See https://nodered.org/docs/security.html for detaails.
+     */
+    adminAuth: {
+        type: "credentials",
+        users: [{
+            username: "admin",
+            password: "$2y$08$cUm1LgtBnDt.b.az4IiLeuPCNb0LFv.hbnd71OWwd94j.GMF/WVnW",
+            permissions: "*"
+        }]
+    }
+    ```
+-   Browser input http://your-ip-address:1880 Enter your username and password to log in.
+    <div align=center>  <img src=".\image\015.png" width=50%></div> 
+
+## Install Docker
+
+-   Install related dependencies
+    ```
+    sudo apt update
+    sudo apt install ca-certificates curl
+    sudo install -m 0755 -d /etc/apt/keyrings
+    sudo curl -fsSL https://download.docker.com/linux/ubuntu/gpg -o /etc/apt/keyrings/docker.asc
+    sudo chmod a+r /etc/apt/keyrings/docker.asc
+    echo "deb [arch=$(dpkg --print-architecture) signed-by=/etc/apt/keyrings/docker.asc] https://download.docker.com/linux/ubuntu $(. /etc/os-release && echo "${UBUNTU_CODENAME:-$VERSION_CODENAME}") stable" | sudo tee /etc/apt/sources.list.d/docker.list > /dev/null
+    sudo apt update
+    sudo apt-get install docker-ce docker-ce-cli containerd.io docker-buildx-plugin docker-compose-plugin
+    ```
+-   Pull image
+    ```
+    admin@cp2b-p:~$ sudo docker run hello-world
+    Hello from Docker!
+    This message shows that your installation appears to be working correctly.
+
+    To generate this message, Docker took the following steps:
+    1. The Docker client contacted the Docker daemon.
+    2. The Docker daemon pulled the "hello-world" image from the Docker Hub.
+    (arm32v7)
+    3. The Docker daemon created a new container from that image which runs the
+    executable that produces the output you are currently reading.
+    4. The Docker daemon streamed that output to the Docker client, which sent it
+    to your terminal.
+
+    To try something more ambitious, you can run an Ubuntu container with:
+    $ docker run -it ubuntu bash
+
+    Share images, automate workflows, and more with a free Docker ID:
+    https://hub.docker.com/
+
+    For more examples and ideas, visit:
+    https://docs.docker.com/get-started/
+
+    ```
+-   Replace the source
+    The image pulling speed is relatively slow. You can try changing the image source.
+    ```
+    sudo vim /etc/docker/daemon.json
+    ```
+    Copy the following content
+    ```
+    {
+        "registry-mirrors": [
+            "https://docker.m.daocloud.io"
+        ]
+    }
+
+    ```
+    Restart service
+    ```
+    sudo systemctl daemon-reload
+    sudo systemctl restart docker
+    ```
+    
 ## Common problems and solutions
 
   -  How to change default password？
